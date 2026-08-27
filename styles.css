@@ -382,12 +382,8 @@ body.sheet-open .app {
   padding: 4px 18px;
 }
 
-.nav-item svg {
-  stroke: var(--text-tertiary);
-}
-
-.nav-item.active svg {
-  stroke: var(--text-primary);
+.nav-item.active {
+  color: var(--text-primary);
 }
 
 /* Backdrop */
