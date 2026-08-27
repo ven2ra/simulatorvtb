@@ -172,14 +172,17 @@
   function refreshSourceRow() {
     const source = getSourceById(selectedSourceId);
     const sumEl = document.getElementById("refillSourceSum");
-    const subEl = document.getElementById("refillSourceSub");
+    const nameEl = document.getElementById("refillSourceName");
+    const numberEl = document.getElementById("refillSourceNumber");
     if (!source) {
       sumEl.textContent = "Выберите счёт";
-      subEl.textContent = "";
+      nameEl.textContent = "";
+      numberEl.textContent = "";
       return;
     }
-    sumEl.textContent = `${source.name} · ${source.number}`;
-    subEl.textContent = `${formatRub(source.balance)} ${CURRENCY_SYMBOL[source.currency]}`;
+    sumEl.textContent = `${formatRub(source.balance)} ${CURRENCY_SYMBOL[source.currency]}`;
+    nameEl.textContent = source.name;
+    numberEl.textContent = `• ${source.number}`;
     document.getElementById("refillAmountCurrency").textContent = CURRENCY_SYMBOL[source.currency];
   }
 

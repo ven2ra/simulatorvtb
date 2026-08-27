@@ -377,15 +377,40 @@
     <div class="sheet-body">
       <div class="refill-block-label">Откуда</div>
       <button class="refill-account-row" id="refillSourceRow">
-        <span class="refill-avatar" id="refillSourceAvatar">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M6.616 6 5.524 9.188h15.134L21.75 6zm-1.639 4.781L3.885 13.97H19.02l1.093-3.188zm-1.635 4.782L2.25 18.75h15.134l1.092-3.187z" fill-rule="evenodd"></path></svg>
+        <span class="refill-avatar refill-avatar--vtb" id="refillSourceAvatar">
+          <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+            <defs>
+              <radialGradient cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(40,0,0,40,20,0)" id="refillAvatarRadial">
+                <stop stop-color="rgb(131,182,255)" offset="0.458007812"></stop>
+                <stop stop-color="rgb(68,145,255)" offset="0.78439939"></stop>
+                <stop stop-color="rgb(8,95,228)" offset="1"></stop>
+              </radialGradient>
+              <linearGradient x1="0" x2="20" y1="2" y2="40" gradientUnits="userSpaceOnUse" id="refillAvatarLinear1">
+                <stop stop-color="#fff" offset="0"></stop>
+                <stop stop-color="#fff" offset="1" stop-opacity="0"></stop>
+              </linearGradient>
+              <linearGradient x1="40" x2="2.5" y1="40" y2="2.5" gradientUnits="userSpaceOnUse" id="refillAvatarLinear2">
+                <stop stop-color="#fff" offset="0"></stop>
+                <stop stop-color="#fff" offset="1" stop-opacity="0"></stop>
+              </linearGradient>
+              <clipPath id="refillAvatarClip"><rect width="40" height="40" rx="12" fill="#fff"></rect></clipPath>
+            </defs>
+            <rect width="40" height="40" rx="12" fill="url(#refillAvatarRadial)"></rect>
+            <rect width="40" height="40" rx="12" fill="#fff" fill-opacity="0.7"></rect>
+            <rect width="39" height="39" x="0.5" y="0.5" rx="11.5" stroke="url(#refillAvatarLinear1)"></rect>
+            <rect width="39" height="39" x="0.5" y="0.5" rx="11.5" stroke="url(#refillAvatarLinear2)" stroke-opacity="0.6"></rect>
+            <path d="M29.78 16.5H12.7L13.93 13H31l-1.22 3.5Zm-.61 1.75H12.08l-1.23 3.5H27.93l1.24-3.5Zm-18.93 5.25 17.08.004L26.08 27H9l1.24-3.5Z" fill="rgb(51,149,255)" fill-rule="evenodd"></path>
+          </svg>
         </span>
         <div class="refill-account-info">
-          <div class="refill-account-sum" id="refillSourceSum">Мастер-счет в рублях · 1234</div>
-          <div class="refill-account-sub" id="refillSourceSub">596,63 ₽</div>
+          <div class="refill-account-sum" id="refillSourceSum">596,63 ₽</div>
+          <div class="refill-account-sub">
+            <div id="refillSourceName">Мастер-счет в рублях</div>
+            <div id="refillSourceNumber">• 1234</div>
+          </div>
         </div>
         <span class="refill-account-chevron">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.46 12 9.29 7.8c-.2-.2-.29-.45-.29-.76 0-.3.09-.55.29-.75.19-.2.44-.29.75-.29.3 0 .55.09.75.29l4.91 4.95c.11.11.18.23.23.35.04.13.07.26.07.41 0 .14-.03.27-.07.4-.05.12-.12.24-.23.35l-4.91 4.95c-.2.2-.45.3-.75.3-.31 0-.56-.1-.75-.3-.2-.2-.29-.45-.29-.75 0-.31.09-.56.29-.76z"></path></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#75767F"><path d="M12 16c-.15 0-.28-.03-.41-.07a1.06 1.06 0 0 1-.35-.23l-4.95-4.91c-.2-.2-.29-.45-.29-.75 0-.31.09-.56.29-.75.2-.2.45-.29.75-.29.31 0 .56.09.76.29l4.2 4.17 4.19-4.17c.2-.2.45-.29.76-.29.3 0 .55.09.75.29.2.19.3.44.3.75 0 .3-.1.55-.3.75l-4.95 4.91c-.11.11-.23.18-.35.23-.13.04-.26.07-.4.07Z"></path></svg>
         </span>
       </button>
 
