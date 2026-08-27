@@ -2084,7 +2084,7 @@ body.sheet-open .app {
 /* ---------- Analyst tabs ---------- */
 .feed-subtabs {
   display: flex;
-  gap: 6px;
+  gap: 16px;
   margin-top: 12px;
   overflow-x: auto;
   scrollbar-width: none;
@@ -2097,20 +2097,19 @@ body.sheet-open .app {
 .feed-subtab {
   flex: 0 0 auto;
   border: none;
-  background: var(--neutral-bg);
+  background: none;
   color: var(--text-secondary);
   font-family: inherit;
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 18px;
   font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 100px;
+  padding: 0;
   cursor: pointer;
   white-space: nowrap;
 }
 
 .feed-subtab.active {
-  background: rgb(24, 25, 28);
-  color: #fff;
+  color: rgb(24, 25, 28);
 }
 
 .feed-analyst-columns {
