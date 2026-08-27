@@ -230,7 +230,7 @@
           <span class="sheet-row-icon">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.616 6 5.524 9.188h15.134L21.75 6zm-1.639 4.781L3.885 13.97H19.02l1.093-3.188zm-1.635 4.782L2.25 18.75h15.134l1.092-3.187z" fill-rule="evenodd"></path></svg>
           </span>
-          <span class="sheet-row-label">Со счета в банке ВТБ</span>
+          <span class="sheet-row-label">Со счета в банке</span>
           <span class="sheet-row-chevron">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.46 12 9.29 7.8c-.2-.2-.29-.45-.29-.76 0-.3.09-.55.29-.75.19-.2.44-.29.75-.29.3 0 .55.09.75.29l4.91 4.95c.11.11.18.23.23.35.04.13.07.26.07.41 0 .14-.03.27-.07.4-.05.12-.12.24-.23.35l-4.91 4.95c-.2.2-.45.3-.75.3-.31 0-.56-.1-.75-.3-.2-.2-.29-.45-.29-.75 0-.31.09-.56.29-.76z"></path></svg>
           </span>
@@ -362,6 +362,99 @@
       </div>
 
       <button class="req-copy-btn" id="reqCopyBtn">Скопировать</button>
+    </div>
+  </div>
+
+  <!-- Экран «Пополнение со счета банка» -->
+  <div class="sheet sheet--level3 sheet--fullscreen" id="refillSheet" role="dialog" aria-modal="true" aria-label="Пополнение со счета банка">
+    <div class="topup-header">
+      <button class="topup-back" id="refillBack" aria-label="Назад">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="m7.41 11 5.29-5.3c.4-.39.4-1.02 0-1.41a.978.978 0 0 0-1.41 0l-6.94 6.93c-.08.07-.15.15-.2.23-.12.18-.15.36-.15.55 0 .18.03.36.15.54.05.08.12.16.2.23l6.94 6.93c.39.4 1.02.4 1.41 0 .4-.39.4-1.02 0-1.41L7.41 13H19c.56 0 1-.44 1-1s-.44-1-1-1H7.41Z"></path></svg>
+      </button>
+      <div class="topup-title">Пополнение со счета банка</div>
+      <span class="topup-close-btn" aria-hidden="true"></span>
+    </div>
+    <div class="sheet-body">
+      <div class="refill-block-label">Куда</div>
+      <button class="refill-account-row" id="refillDestRow">
+        <div class="refill-account-info">
+          <div class="refill-account-sum" id="refillDestSum">65 ₽</div>
+          <div class="refill-account-sub" id="refillDestSub">Брокерский счет · 123456 · Основной</div>
+        </div>
+        <span class="refill-account-chevron">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.46 12 9.29 7.8c-.2-.2-.29-.45-.29-.76 0-.3.09-.55.29-.75.19-.2.44-.29.75-.29.3 0 .55.09.75.29l4.91 4.95c.11.11.18.23.23.35.04.13.07.26.07.41 0 .14-.03.27-.07.4-.05.12-.12.24-.23.35l-4.91 4.95c-.2.2-.45.3-.75.3-.31 0-.56-.1-.75-.3-.2-.2-.29-.45-.29-.75 0-.31.09-.56.29-.76z"></path></svg>
+        </span>
+      </button>
+
+      <div class="refill-block-label">Откуда</div>
+      <button class="refill-account-row" id="refillSourceRow">
+        <span class="refill-avatar" id="refillSourceAvatar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M6.616 6 5.524 9.188h15.134L21.75 6zm-1.639 4.781L3.885 13.97H19.02l1.093-3.188zm-1.635 4.782L2.25 18.75h15.134l1.092-3.187z" fill-rule="evenodd"></path></svg>
+        </span>
+        <div class="refill-account-info">
+          <div class="refill-account-sum" id="refillSourceSum">Мастер-счет в рублях · 1234</div>
+          <div class="refill-account-sub" id="refillSourceSub">596,63 ₽</div>
+        </div>
+        <span class="refill-account-chevron">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.46 12 9.29 7.8c-.2-.2-.29-.45-.29-.76 0-.3.09-.55.29-.75.19-.2.44-.29.75-.29.3 0 .55.09.75.29l4.91 4.95c.11.11.18.23.23.35.04.13.07.26.07.41 0 .14-.03.27-.07.4-.05.12-.12.24-.23.35l-4.91 4.95c-.2.2-.45.3-.75.3-.31 0-.56-.1-.75-.3-.2-.2-.29-.45-.29-.75 0-.31.09-.56.29-.76z"></path></svg>
+        </span>
+      </button>
+
+      <div class="refill-block-label">Сумма пополнения</div>
+      <div class="refill-amount-row">
+        <input class="refill-amount-input" id="refillAmountInput" type="text" inputmode="decimal" placeholder="0" autocomplete="off" />
+        <span class="refill-amount-currency" id="refillAmountCurrency">₽</span>
+      </div>
+      <div class="refill-error" id="refillError"></div>
+
+      <button class="refill-submit-btn" id="refillSubmitBtn" disabled>Пополнить</button>
+    </div>
+  </div>
+
+  <!-- Шторка выбора счёта-получателя («Куда») -->
+  <div class="sheet sheet--level4" id="destPickerSheet" role="dialog" aria-modal="true" aria-label="Выберите счёт получателя">
+    <div class="sheet-grabber"></div>
+    <div class="picker-header">
+      <div class="picker-title">Выберите счёт</div>
+      <button class="topup-close-btn" id="destPickerClose" aria-label="Закрыть">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#B2B2B7"><path fill-rule="nonzero" d="M12 13.4L14.9 16.29C15.08 16.48 15.31 16.57 15.6 16.57C15.88 16.57 16.11 16.48 16.29 16.29C16.48 16.11 16.57 15.88 16.57 15.6C16.57 15.31 16.48 15.08 16.29 14.9L13.4 12L16.29 9.1C16.48 8.91 16.57 8.68 16.57 8.39C16.57 8.11 16.48 7.88 16.29 7.7C16.11 7.51 15.88 7.42 15.6 7.42C15.31 7.42 15.08 7.51 14.9 7.7L12 10.6L9.1 7.7C8.91 7.51 8.68 7.42 8.39 7.42C8.11 7.42 7.88 7.51 7.7 7.7C7.51 7.88 7.42 8.11 7.42 8.39C7.42 8.68 7.51 8.91 7.7 9.1L10.6 12L7.7 14.9C7.51 15.08 7.42 15.31 7.42 15.6C7.42 15.88 7.51 16.11 7.7 16.29C7.88 16.48 8.11 16.57 8.39 16.57C8.68 16.57 8.91 16.48 9.1 16.29L12 13.4ZM12 22C10.61 22 9.31 21.73 8.1 21.21C6.88 20.68 5.82 19.97 4.92 19.07C4.02 18.17 3.31 17.11 2.78 15.9C2.26 14.68 2 13.38 2 12C2 10.61 2.26 9.31 2.78 8.1C3.31 6.88 4.02 5.82 4.92 4.92C5.82 4.02 6.88 3.31 8.1 2.78C9.31 2.26 10.61 2 12 2C13.38 2 14.68 2.26 15.9 2.78C17.11 3.31 18.17 4.02 19.07 4.92C19.97 5.82 20.68 6.88 21.21 8.1C21.73 9.31 22 10.61 22 12C22 13.38 21.73 14.68 21.21 15.9C20.68 17.11 19.97 18.17 19.07 19.07C18.17 19.97 17.11 20.68 15.9 21.21C14.68 21.73 13.38 22 12 22Z"></path></svg>
+      </button>
+    </div>
+    <div class="sheet-body" id="destPickerList"></div>
+  </div>
+
+  <!-- Шторка выбора банковского счёта («Откуда») -->
+  <div class="sheet sheet--level4" id="bankPickerSheet" role="dialog" aria-modal="true" aria-label="Выберите счёт">
+    <div class="sheet-grabber"></div>
+    <div class="picker-header">
+      <div class="picker-title">Выберите счёт</div>
+      <button class="picker-filter-btn" id="filterOpenBtn" aria-label="Фильтр">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M9.25 5V3c0-.42.33-.75.75-.75s.75.33.75.75v.29c.07-.03.16-.04.25-.04h2c.42 0 .75.33.75.75s-.33.75-.75.75h-2c-.09 0-.18-.02-.25-.05V5c0 .42-.33.75-.75.75s-.75-.33-.75-.75M3 3.25h5c.42 0 .75.33.75.75s-.33.75-.75.75H3c-.42 0-.75-.33-.75-.75s.33-.75.75-.75M5.25 9v-.25H3c-.42 0-.75-.33-.75-.75s.33-.75.75-.75h2.25V7c0-.42.33-.75.75-.75s.75.33.75.75v2c0 .42-.33.75-.75.75s-.75-.33-.75-.75M8 7.25h5c.42 0 .75.33.75.75s-.33.75-.75.75H8c-.42 0-.75-.33-.75-.75s.33-.75.75-.75M9.25 13v-2c0-.42.33-.75.75-.75s.75.33.75.75v.25H13c.42 0 .75.33.75.75s-.33.75-.75.75h-2.25V13c0 .42-.33.75-.75.75s-.75-.33-.75-.75M3 11.25h5c.42 0 .75.33.75.75s-.33.75-.75.75H3c-.42 0-.75-.33-.75-.75s.33-.75.75-.75"></path></svg>
+        <span class="picker-filter-dot" id="filterDot" hidden></span>
+      </button>
+      <button class="topup-close-btn" id="bankPickerClose" aria-label="Закрыть">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#B2B2B7"><path fill-rule="nonzero" d="M12 13.4L14.9 16.29C15.08 16.48 15.31 16.57 15.6 16.57C15.88 16.57 16.11 16.48 16.29 16.29C16.48 16.11 16.57 15.88 16.57 15.6C16.57 15.31 16.48 15.08 16.29 14.9L13.4 12L16.29 9.1C16.48 8.91 16.57 8.68 16.57 8.39C16.57 8.11 16.48 7.88 16.29 7.7C16.11 7.51 15.88 7.42 15.6 7.42C15.31 7.42 15.08 7.51 14.9 7.7L12 10.6L9.1 7.7C8.91 7.51 8.68 7.42 8.39 7.42C8.11 7.42 7.88 7.51 7.7 7.7C7.51 7.88 7.42 8.11 7.42 8.39C7.42 8.68 7.51 8.91 7.7 9.1L10.6 12L7.7 14.9C7.51 15.08 7.42 15.31 7.42 15.6C7.42 15.88 7.51 16.11 7.7 16.29C7.88 16.48 8.11 16.57 8.39 16.57C8.68 16.57 8.91 16.48 9.1 16.29L12 13.4ZM12 22C10.61 22 9.31 21.73 8.1 21.21C6.88 20.68 5.82 19.97 4.92 19.07C4.02 18.17 3.31 17.11 2.78 15.9C2.26 14.68 2 13.38 2 12C2 10.61 2.26 9.31 2.78 8.1C3.31 6.88 4.02 5.82 4.92 4.92C5.82 4.02 6.88 3.31 8.1 2.78C9.31 2.26 10.61 2 12 2C13.38 2 14.68 2.26 15.9 2.78C17.11 3.31 18.17 4.02 19.07 4.92C19.97 5.82 20.68 6.88 21.21 8.1C21.73 9.31 22 10.61 22 12C22 13.38 21.73 14.68 21.21 15.9C20.68 17.11 19.97 18.17 19.07 19.07C18.17 19.97 17.11 20.68 15.9 21.21C14.68 21.73 13.38 22 12 22Z"></path></svg>
+      </button>
+    </div>
+    <div class="sheet-body" id="bankPickerList"></div>
+  </div>
+
+  <!-- Шторка «Фильтр» -->
+  <div class="sheet sheet--level5" id="filterSheet" role="dialog" aria-modal="true" aria-label="Фильтр">
+    <div class="sheet-grabber"></div>
+    <div class="picker-header">
+      <div class="picker-title">Фильтр</div>
+      <button class="topup-close-btn" id="filterClose" aria-label="Закрыть">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#B2B2B7"><path fill-rule="nonzero" d="M12 13.4L14.9 16.29C15.08 16.48 15.31 16.57 15.6 16.57C15.88 16.57 16.11 16.48 16.29 16.29C16.48 16.11 16.57 15.88 16.57 15.6C16.57 15.31 16.48 15.08 16.29 14.9L13.4 12L16.29 9.1C16.48 8.91 16.57 8.68 16.57 8.39C16.57 8.11 16.48 7.88 16.29 7.7C16.11 7.51 15.88 7.42 15.6 7.42C15.31 7.42 15.08 7.51 14.9 7.7L12 10.6L9.1 7.7C8.91 7.51 8.68 7.42 8.39 7.42C8.11 7.42 7.88 7.51 7.7 7.7C7.51 7.88 7.42 8.11 7.42 8.39C7.42 8.68 7.51 8.91 7.7 9.1L10.6 12L7.7 14.9C7.51 15.08 7.42 15.31 7.42 15.6C7.42 15.88 7.51 16.11 7.7 16.29C7.88 16.48 8.11 16.57 8.39 16.57C8.68 16.57 8.91 16.48 9.1 16.29L12 13.4ZM12 22C10.61 22 9.31 21.73 8.1 21.21C6.88 20.68 5.82 19.97 4.92 19.07C4.02 18.17 3.31 17.11 2.78 15.9C2.26 14.68 2 13.38 2 12C2 10.61 2.26 9.31 2.78 8.1C3.31 6.88 4.02 5.82 4.92 4.92C5.82 4.02 6.88 3.31 8.1 2.78C9.31 2.26 10.61 2 12 2C13.38 2 14.68 2.26 15.9 2.78C17.11 3.31 18.17 4.02 19.07 4.92C19.97 5.82 20.68 6.88 21.21 8.1C21.73 9.31 22 10.61 22 12C22 13.38 21.73 14.68 21.21 15.9C20.68 17.11 19.97 18.17 19.07 19.07C18.17 19.97 17.11 20.68 15.9 21.21C14.68 21.73 13.38 22 12 22Z"></path></svg>
+      </button>
+    </div>
+    <div class="sheet-body">
+      <div class="filter-section-title">Валюта</div>
+      <div class="filter-chips" id="filterChips">
+        <button class="filter-chip" data-currency="RUB">Рубль</button>
+        <button class="filter-chip" data-currency="CNY">Юань</button>
+      </div>
+      <button class="refill-submit-btn" id="filterApplyBtn" disabled>Применить</button>
     </div>
   </div>
 
