@@ -51,11 +51,29 @@
 
   const eyeToggle = document.getElementById("eye-toggle");
   const sumValue = document.getElementById("sum-value");
+  const sumDots = "••••••";
   let sumHidden = false;
   const realSum = sumValue.textContent;
 
+  const changeTexts = document.querySelectorAll(".change-text");
+  const accountSums = document.querySelectorAll(".account-sum");
+  const accountChanges = document.querySelectorAll(".account-change");
+
   eyeToggle.addEventListener("click", () => {
     sumHidden = !sumHidden;
-    sumValue.textContent = sumHidden ? "•••• ₽" : realSum;
+
+    sumValue.textContent = sumHidden ? sumDots : realSum;
+
+    changeTexts.forEach((el) => {
+      el.textContent = sumHidden ? el.dataset.percent : el.dataset.full;
+    });
+
+    accountSums.forEach((el) => {
+      el.textContent = sumHidden ? "••••••" : el.dataset.full;
+    });
+
+    accountChanges.forEach((el) => {
+      el.textContent = sumHidden ? el.dataset.percent : el.dataset.full;
+    });
   });
 })();
