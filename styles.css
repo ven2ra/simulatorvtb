@@ -2155,7 +2155,7 @@ body.sheet-open .app {
 
 .feed-analyst-col--fixed {
   flex: 0 0 auto;
-  width: 168px;
+  width: 194px;
 }
 
 .feed-stock-info {
@@ -2186,7 +2186,7 @@ body.sheet-open .app {
 
 .feed-bond-rate {
   margin-top: 2px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-secondary);
 }
 
@@ -2214,16 +2214,16 @@ body.sheet-open .app {
 }
 
 .feed-analyst-col .feed-stock-name {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .feed-analyst-col .feed-stock-ticker,
 .feed-analyst-col .feed-stock-change {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .feed-analyst-col .feed-stock-price {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .feed-bond-rating {
