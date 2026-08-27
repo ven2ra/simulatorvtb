@@ -155,7 +155,7 @@
       <div class="sheet-block">
         <div class="sheet-block-title">Пополнения и выводы</div>
 
-        <button class="sheet-row" data-action="Пополнить">
+        <button class="sheet-row" id="row-topup">
           <span class="sheet-row-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11 13H6a.98.98 0 0 1-.72-.29A.965.965 0 0 1 5 12c0-.29.09-.53.28-.72.19-.19.43-.28.72-.28h5V6c0-.29.09-.53.28-.72.19-.19.43-.28.72-.28.28 0 .52.09.71.28.19.19.29.43.29.72v5h5c.28 0 .52.09.71.28.19.19.29.43.29.72 0 .28-.1.52-.29.71-.19.19-.43.29-.71.29h-5v5c0 .28-.1.52-.29.71-.19.19-.43.29-.71.29a.98.98 0 0 1-.72-.29A.965.965 0 0 1 11 18v-5Z"></path></svg>
           </span>
@@ -209,6 +209,109 @@
           </span>
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- Экран «Пополнить» -->
+  <div class="sheet sheet--level2" id="topupSheet" role="dialog" aria-modal="true" aria-label="Пополнить">
+    <div class="sheet-grabber"></div>
+    <button class="sheet-close" id="topupClose" aria-label="Закрыть">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13.4 14.9 16.29c.18.19.41.28.7.28.28 0 .51-.09.7-.28.19-.18.28-.41.28-.69 0-.29-.09-.52-.28-.7L13.4 12l2.89-2.9c.19-.19.28-.42.28-.71 0-.28-.09-.51-.28-.69-.18-.19-.41-.28-.69-.28-.29 0-.52.09-.7.28L12 10.6 9.1 7.7c-.19-.19-.42-.28-.71-.28-.28 0-.51.09-.69.28-.19.19-.28.42-.28.7 0 .29.09.52.28.7L10.6 12l-2.9 2.9c-.19.18-.28.41-.28.7 0 .28.09.51.28.69.18.19.41.28.69.28.29 0 .52-.09.7-.28z"></path></svg>
+    </button>
+    <div class="sheet-body">
+      <div class="sheet-header-title">Пополнить</div>
+
+      <div class="sheet-block-list">
+        <button class="sheet-row" id="row-topup-vtb">
+          <span class="sheet-row-label">Со счета в банке ВТБ</span>
+          <span class="sheet-row-chevron">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.46 12 9.29 7.8c-.2-.2-.29-.45-.29-.76 0-.3.09-.55.29-.75.19-.2.44-.29.75-.29.3 0 .55.09.75.29l4.91 4.95c.11.11.18.23.23.35.04.13.07.26.07.41 0 .14-.03.27-.07.4-.05.12-.12.24-.23.35l-4.91 4.95c-.2.2-.45.3-.75.3-.31 0-.56-.1-.75-.3-.2-.2-.29-.45-.29-.75 0-.31.09-.56.29-.76z"></path></svg>
+          </span>
+        </button>
+      </div>
+
+      <div class="sheet-block">
+        <div class="sheet-block-title">С моего счета в другом банке</div>
+        <div class="bank-chips">
+          <button class="bank-chip" data-bank="Т-Банк">
+            <span class="bank-icon" style="background:#FFCB05">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="#fff"><path d="m4.13 3.62-.78 2.19h10.86L15 3.62zM2.95 6.9l-.78 2.19h10.86l.79-2.19zm-1.17 3.28L1 12.37h10.86l.78-2.19z"></path></svg>
+            </span>
+            <span class="bank-name">Т-Банк</span>
+          </button>
+          <button class="bank-chip" data-bank="АЛЬФА-БАНК">
+            <span class="bank-icon" style="background:#EF3124">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="#fff"><path d="m4.13 3.62-.78 2.19h10.86L15 3.62zM2.95 6.9l-.78 2.19h10.86l.79-2.19zm-1.17 3.28L1 12.37h10.86l.78-2.19z"></path></svg>
+            </span>
+            <span class="bank-name">АЛЬФА-БАНК</span>
+          </button>
+          <button class="bank-chip" data-bank="Райффайзенбанк">
+            <span class="bank-icon" style="background:#FFDD00">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="#fff"><path d="m4.13 3.62-.78 2.19h10.86L15 3.62zM2.95 6.9l-.78 2.19h10.86l.79-2.19zm-1.17 3.28L1 12.37h10.86l.78-2.19z"></path></svg>
+            </span>
+            <span class="bank-name">Райффайзенбанк</span>
+          </button>
+          <button class="bank-chip" data-bank="Газпромбанк">
+            <span class="bank-icon" style="background:#0033A0">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="#fff"><path d="m4.13 3.62-.78 2.19h10.86L15 3.62zM2.95 6.9l-.78 2.19h10.86l.79-2.19zm-1.17 3.28L1 12.37h10.86l.78-2.19z"></path></svg>
+            </span>
+            <span class="bank-name">Газпромбанк</span>
+          </button>
+          <button class="bank-chip" data-bank="Банк ПСБ">
+            <span class="bank-icon" style="background:#DA291C">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="#fff"><path d="m4.13 3.62-.78 2.19h10.86L15 3.62zM2.95 6.9l-.78 2.19h10.86l.79-2.19zm-1.17 3.28L1 12.37h10.86l.78-2.19z"></path></svg>
+            </span>
+            <span class="bank-name">Банк ПСБ</span>
+          </button>
+          <button class="bank-chip" data-bank="Совкомбанк">
+            <span class="bank-icon" style="background:#F58220">
+              <svg width="18" height="18" viewBox="0 0 16 16" fill="#fff"><path d="m4.13 3.62-.78 2.19h10.86L15 3.62zM2.95 6.9l-.78 2.19h10.86l.79-2.19zm-1.17 3.28L1 12.37h10.86l.78-2.19z"></path></svg>
+            </span>
+            <span class="bank-name">Совкомбанк</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="sheet-block-list">
+        <button class="sheet-row" id="row-topup-requisites">
+          <span class="sheet-row-label">По реквизитам</span>
+          <span class="sheet-row-chevron">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13.46 12 9.29 7.8c-.2-.2-.29-.45-.29-.76 0-.3.09-.55.29-.75.19-.2.44-.29.75-.29.3 0 .55.09.75.29l4.91 4.95c.11.11.18.23.23.35.04.13.07.26.07.41 0 .14-.03.27-.07.4-.05.12-.12.24-.23.35l-4.91 4.95c-.2.2-.45.3-.75.3-.31 0-.56-.1-.75-.3-.2-.2-.29-.45-.29-.75 0-.31.09-.56.29-.76z"></path></svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Экран «Реквизиты» -->
+  <div class="sheet sheet--level3" id="requisitesSheet" role="dialog" aria-modal="true" aria-label="Реквизиты для перевода">
+    <div class="sheet-grabber"></div>
+    <button class="sheet-close" id="requisitesClose" aria-label="Закрыть">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13.4 14.9 16.29c.18.19.41.28.7.28.28 0 .51-.09.7-.28.19-.18.28-.41.28-.69 0-.29-.09-.52-.28-.7L13.4 12l2.89-2.9c.19-.19.28-.42.28-.71 0-.28-.09-.51-.28-.69-.18-.19-.41-.28-.69-.28-.29 0-.52.09-.7.28L12 10.6 9.1 7.7c-.19-.19-.42-.28-.71-.28-.28 0-.51.09-.69.28-.19.19-.28.42-.28.7 0 .29.09.52.28.7L10.6 12l-2.9 2.9c-.19.18-.28.41-.28.7 0 .28.09.51.28.69.18.19.41.28.69.28.29 0 .52-.09.7-.28z"></path></svg>
+    </button>
+    <div class="sheet-body">
+      <div class="sheet-header-title">Реквизиты для перевода</div>
+
+      <div class="req-list">
+        <div class="req-field">
+          <div class="req-label">Получатель</div>
+          <div class="req-value">Иванов Иван Иванович</div>
+        </div>
+        <div class="req-field">
+          <div class="req-label">Номер счёта</div>
+          <div class="req-value">40817810400001234567</div>
+        </div>
+        <div class="req-field">
+          <div class="req-label">БИК банка</div>
+          <div class="req-value">044525187</div>
+        </div>
+        <div class="req-field">
+          <div class="req-label">Банк получателя</div>
+          <div class="req-value">Банк ВТБ (ПАО)</div>
+        </div>
+      </div>
+
+      <button class="req-copy-btn" id="reqCopyBtn">Скопировать</button>
     </div>
   </div>
 
