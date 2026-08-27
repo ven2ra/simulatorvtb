@@ -578,7 +578,7 @@
 
   const PROMO_SLIDES = [
     {
-      image: "https://h2.vtb.ru/projects/mpmi/files/skins/Shortcuts/crystal_new_light.png",
+      image: "https://headless-cms7.vtb.ru/projects/mpmi/files/store/widget/widget_1270.jpg",
       title: "Лучший частный инвестор 2026",
       sub: "Призы в 2 раза больше с ВТБ",
     },
