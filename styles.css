@@ -997,6 +997,23 @@ body.sheet-open .app {
   flex: 0 0 auto;
 }
 
+.picker-header--stacked {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.picker-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.picker-header--stacked .picker-header-actions {
+  justify-content: flex-start;
+}
+
 .picker-active-filter-chip {
   display: flex;
   align-items: center;
