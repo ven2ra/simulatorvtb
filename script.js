@@ -279,9 +279,14 @@
   ];
 
   const DEMO_PLACEMENTS = [
-    { name: "ЗПИКФ ВИМ Недвижимость", kind: "Фонды", code: "SFO", price: "Цена: 1 246,04 ₽" },
-    { name: "ЗПИФН ВИМ РД 3", kind: "Фонды", code: "SFO", price: "Цена: 1 049,49 ₽" },
-    { name: "ЗПИФ ВИМ Рентный доход", kind: "Фонды", code: "SFO", price: "Цена: 1 050,00 ₽" },
+    { name: "ЗПИКФ ВИМ Недвижимость", kind: "Фонды", big: "SFO", small: "Цена: 1 246,04 ₽", icon: "https://headless-cms7.vtb.ru/projects/mpmi/files/icons/LQDT.png" },
+    { name: "ЗПИФН ВИМ РД 3", kind: "Фонды", big: "SFO", small: "Цена: 1 049,49 ₽", icon: "https://headless-cms7.vtb.ru/projects/mpmi/files/icons/LQDT.png" },
+    { name: "ЗПИКФ ВИМ - Спектр", kind: "Фонды", big: "SFO", small: "Цена: 105 570,7 ₽", icon: "https://headless-cms7.vtb.ru/projects/mpmi/files/icons/LQDT.png" },
+    { name: "ВТБ Б1-400", kind: "Облигации", big: "На 119 дней", small: "Купон: 13.5% в ₽", icon: "https://headless-cms7.vtb.ru/projects/mpmi/files/icons/ISSR_7702070139.png" },
+    { name: "АБЗ-1 2Р07", kind: "Облигации", big: "На 3 года", small: "Купон: 18% в ₽", icon: "https://headless-cms7.vtb.ru/projects/mpmi/files/icons/ABZ.png" },
+    { name: "АйДиКол1P9", kind: "Облигации", big: "На 4 года", small: "Купон: 20.25% в ₽", icon: "https://headless-cms7.vtb.ru/projects/mpmi/files/icons/idcollect.png" },
+    { name: "ФосАгро2П7", kind: "Облигации", big: "На 2 года 2 мес.", small: "Купон: Около 15,4%", icon: "https://headless-cms7.vtb.ru/projects/mpmi/files/icons/PHOR.png" },
+    { name: "iВУШ 1P8", kind: "Облигации", big: "На 3 года 1 мес.", small: "Купон: до 22% в ₽", icon: "https://headless-cms7.vtb.ru/projects/mpmi/files/icons/4-00075-L.png" },
   ];
 
   const DEMO_FUNDS = [
@@ -445,11 +450,11 @@
       DEMO_PLACEMENTS,
       "feed-hcard--placement",
       (item) => `
-        <div class="feed-hcard-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgb(0,122,255)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <div class="feed-hcard-badge"><img src="${item.icon}" alt="" draggable="false" width="22" height="22" style="border-radius:50%" /></div>
         <div class="feed-hcard-kind">${item.kind}</div>
         <div class="feed-hcard-name">${item.name}</div>
-        <div class="feed-hcard-code">${item.code}</div>
-        <div class="feed-hcard-price">${item.price}</div>
+        <div class="feed-hcard-code">${item.big}</div>
+        <div class="feed-hcard-price">${item.small}</div>
       `
     );
   }
