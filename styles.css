@@ -573,6 +573,9 @@ body.sheet-open .app {
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .bank-name {
