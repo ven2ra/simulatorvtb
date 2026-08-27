@@ -628,8 +628,9 @@ body.sheet-open .app {
 
 .vtb-card-number {
   color: #fff;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
 }
 
 /* Bank pills (horizontal, icon + name inline) */
