@@ -42,7 +42,10 @@ body.sheet-open .app {
   min-height: 100vh;
   background: var(--bg);
   position: relative;
-  padding-bottom: 90px;
+}
+
+.bottom-spacer {
+  height: 108px;
 }
 
 /* Top bar */
@@ -105,13 +108,13 @@ body.sheet-open .app {
 /* Header sum */
 .header {
   padding: 28px 16px 0;
-  text-align: right;
+  text-align: center;
 }
 
 .portfolio-sum-row {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -134,7 +137,7 @@ body.sheet-open .app {
   margin-top: 8px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 8px;
   font-size: 14px;
 }
@@ -162,6 +165,7 @@ body.sheet-open .app {
 /* Action pill buttons */
 .action-pills {
   display: flex;
+  justify-content: center;
   gap: 8px;
   padding: 20px 16px 0;
   overflow-x: auto;
@@ -332,13 +336,27 @@ body.sheet-open .app {
   cursor: pointer;
 }
 
+/* Floating bottom card: search + nav */
+.bottom-card {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  max-width: 668px;
+  margin: 0 auto;
+  background: var(--card);
+  border-radius: 24px;
+  box-shadow: 0 12px 32px rgba(24, 25, 28, 0.16);
+  padding: 10px;
+  z-index: 40;
+}
+
 /* Search bar */
 .search-bar {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: var(--card);
-  margin: 12px 16px 0;
+  background: var(--bg);
   padding: 13px 16px;
   border-radius: var(--radius-md);
   color: var(--text-tertiary);
@@ -348,41 +366,24 @@ body.sheet-open .app {
 
 /* Bottom nav */
 .bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  max-width: 700px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(20px);
-  border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-around;
-  padding: 10px 0 calc(10px + env(safe-area-inset-bottom));
-  z-index: 40;
+  padding: 12px 0 4px;
 }
 
 .nav-item {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
   border: none;
   background: none;
-  font-family: inherit;
-  font-size: 11px;
   color: var(--text-tertiary);
   cursor: pointer;
-  padding: 4px 12px;
+  padding: 4px 18px;
 }
 
 .nav-item svg {
   stroke: var(--text-tertiary);
-}
-
-.nav-item.active {
-  color: var(--text-primary);
 }
 
 .nav-item.active svg {
@@ -533,38 +534,3 @@ body.sheet-open .app {
   transform: translate(-50%, 0);
 }
 
-/* Desktop: side panel */
-@media (min-width: 860px) {
-  .backdrop {
-    background: rgba(24, 25, 28, 0.32);
-  }
-
-  .sheet {
-    left: auto;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    max-width: 420px;
-    width: 420px;
-    height: 100vh;
-    max-height: none;
-    border-radius: 0;
-    transform: translateX(100%);
-  }
-
-  .sheet.open {
-    transform: translateX(0);
-  }
-
-  .sheet-grabber {
-    display: none;
-  }
-
-  .sheet-close {
-    top: 20px;
-  }
-
-  .sheet-body {
-    padding-top: 56px;
-  }
-}
