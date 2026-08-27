@@ -2130,6 +2130,7 @@ body.sheet-open .app {
 }
 
 .feed-analyst-columns--scroll {
+  gap: 0;
   overflow-x: auto;
   scrollbar-width: none;
   margin-left: -16px;
@@ -2150,6 +2151,15 @@ body.sheet-open .app {
 .feed-analyst-col--fixed {
   flex: 0 0 auto;
   width: 168px;
+  padding-right: 14px;
+  margin-right: 14px;
+  border-right: 1px solid var(--border);
+}
+
+.feed-analyst-col--fixed:last-child {
+  padding-right: 0;
+  margin-right: 0;
+  border-right: none;
 }
 
 .feed-stock-info {
