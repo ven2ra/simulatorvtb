@@ -1947,7 +1947,7 @@ body.sheet-open .app {
 /* ---------- Horizontal cards: placements / funds / structured ---------- */
 .feed-hcard--placement,
 .feed-hcard--struct {
-  width: 176px;
+  width: 224px;
   background: linear-gradient(135deg, rgb(0, 122, 255), rgb(0, 90, 230));
   color: #fff;
   position: relative;
@@ -2000,7 +2000,7 @@ body.sheet-open .app {
 }
 
 .feed-hcard--fund {
-  width: 176px;
+  width: 224px;
   background: var(--card);
   position: relative;
 }
