@@ -1862,7 +1862,7 @@ body.sheet-open .app {
 .tile-card {
   position: relative;
   overflow: hidden;
-  min-height: 168px;
+  min-height: 132px;
   border: none;
   border-radius: var(--radius-md);
   padding: 14px;
@@ -1888,10 +1888,10 @@ body.sheet-open .app {
 
 .tile-card-icon {
   position: absolute;
-  right: -10px;
-  bottom: -10px;
-  width: 150px;
-  height: 150px;
+  right: -8px;
+  bottom: -8px;
+  width: 112px;
+  height: 112px;
   object-fit: contain;
   opacity: 0.95;
 }
@@ -1902,8 +1902,8 @@ body.sheet-open .app {
 }
 
 .tile-card-icon--svg {
-  width: 76px;
-  height: 76px;
+  width: 60px;
+  height: 60px;
   right: 12px;
   bottom: 12px;
 }
