@@ -363,7 +363,7 @@
     row.className = "feed-stock-row";
     row.innerHTML = `
       ${stock.avatar}
-      <div style="flex:1;min-width:0">
+      <div class="feed-stock-info">
         <div class="feed-stock-name">${stock.name}</div>
         <div class="feed-stock-ticker">${stock.ticker}</div>
       </div>
@@ -414,7 +414,7 @@
         row.className = "feed-stock-row";
         row.innerHTML = `
           ${bond.avatar}
-          <div style="flex:1;min-width:0">
+          <div class="feed-stock-info">
             <div class="feed-stock-name">${bond.name}</div>
             <div class="feed-stock-change positive">${bond.rate}</div>
             ${bondRatingHTML(bond.rating)}
