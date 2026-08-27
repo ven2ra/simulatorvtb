@@ -652,7 +652,7 @@
       const iconHTML = tile.image
         ? `<img class="tile-card-icon" src="${tile.image}" alt="" draggable="false" />`
         : tile.icon
-          ? `<span class="tile-card-icon" style="color:${tile.bg ? "#fff" : "var(--text-tertiary)"}">${TILE_ICONS[tile.icon]}</span>`
+          ? `<span class="tile-card-icon tile-card-icon--svg" style="color:${tile.bg ? "#fff" : "var(--text-tertiary)"}">${TILE_ICONS[tile.icon]}</span>`
           : "";
       btn.innerHTML = `<div class="tile-card-label">${tile.label}</div>${iconHTML}`;
       btn.addEventListener("click", () => showToast("Демо: действие недоступно"));
