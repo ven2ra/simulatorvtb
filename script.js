@@ -623,23 +623,15 @@
 
   /* Сетка быстрых плиток */
 
-  const TILE_ICONS = {
-    percent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>',
-    diamond: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"></path><path d="M2 9h20M9 3l-3 6 6 12 6-12-3-6"></path></svg>',
-    book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V4H6.5A2.5 2.5 0 0 0 4 6.5v13z"></path><line x1="4" y1="17" x2="20" y2="17"></line></svg>',
-    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="8 12 11 15 16 9"></polyline></svg>',
-    person: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"></path></svg>',
-  };
-
   const TILE_ITEMS = [
     { label: "Розыгрыш миллиона рублей", bg: "linear-gradient(135deg, rgb(180,150,240), rgb(120,90,210))", image: "https://h2.vtb.ru/projects/mpmi/files/skins/Shortcuts/crystal_new_light.png" },
     { label: "Акция: кредит под активы", bg: "linear-gradient(135deg, rgb(100,170,255), rgb(30,120,240))", image: "https://h2.vtb.ru/projects/mpmi/files/skins/Shortcuts/star_light.png" },
     { label: "Открыть новый субсчет", image: "https://headless-cms7.vtb.ru/projects/mpmi/files/skins/Shortcuts/portfel_light.png" },
     { label: "Маржинальная торговля", image: "https://headless-cms7.vtb.ru/projects/mpmi/files/skins/Shortcuts/percent_light.png" },
     { label: "ИИС", image: "https://headless-cms7.vtb.ru/projects/mpmi/files/skins/Shortcuts/diamond_light.png" },
-    { label: "ФинКод: всё об инвестициях", icon: "book" },
-    { label: "Голосования акционеров", icon: "check" },
-    { label: "Индивидуальный подход с Advisory", icon: "person" },
+    { label: "ФинКод: всё об инвестициях", image: "https://headless-cms7.vtb.ru/projects/mpmi/files/skins/Shortcuts/fincod_light.png" },
+    { label: "Голосования акционеров", image: "https://headless-cms7.vtb.ru/projects/mpmi/files/skins/Shortcuts/check_light.png" },
+    { label: "Индивидуальный подход с Advisory", image: "https://headless-cms7.vtb.ru/projects/mpmi/files/skins/Shortcuts/profile_light.png" },
   ];
 
   function renderTileGrid() {
@@ -649,11 +641,7 @@
       const btn = document.createElement("button");
       btn.className = "tile-card" + (tile.bg ? " tile-card--gradient" : "");
       if (tile.bg) btn.style.background = tile.bg;
-      const iconHTML = tile.image
-        ? `<img class="tile-card-icon" src="${tile.image}" alt="" draggable="false" />`
-        : tile.icon
-          ? `<span class="tile-card-icon tile-card-icon--svg" style="color:${tile.bg ? "#fff" : "var(--text-tertiary)"}">${TILE_ICONS[tile.icon]}</span>`
-          : "";
+      const iconHTML = tile.image ? `<img class="tile-card-icon" src="${tile.image}" alt="" draggable="false" />` : "";
       btn.innerHTML = `<div class="tile-card-label">${tile.label}</div>${iconHTML}`;
       btn.addEventListener("click", () => showToast("Демо: действие недоступно"));
       grid.appendChild(btn);
