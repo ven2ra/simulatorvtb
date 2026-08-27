@@ -34,6 +34,33 @@
       </div>
     </div>
 
+    <div class="stories-strip" id="storiesStrip">
+      <button class="story-item" data-story="0">
+        <span class="story-avatar story-avatar--1"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9m5 10V5m5 14v-7m5 7V3"></path></svg></span>
+        <span class="story-title">Топ-10 акций</span>
+      </button>
+      <button class="story-item" data-story="1">
+        <span class="story-avatar story-avatar--2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>
+        <span class="story-title">До 16% годовых</span>
+      </button>
+      <button class="story-item" data-story="2">
+        <span class="story-avatar story-avatar--3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6z"></path></svg></span>
+        <span class="story-title">Сохранность: +50%</span>
+      </button>
+      <button class="story-item" data-story="3">
+        <span class="story-avatar story-avatar--4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 21c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5"></path></svg></span>
+        <span class="story-title">Портфель для ребёнка</span>
+      </button>
+      <button class="story-item" data-story="4">
+        <span class="story-avatar story-avatar--5"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9 9h.01M15 9h.01M8 15c1.5 1 2.5 1.5 4 1.5s2.5-.5 4-1.5"></path></svg></span>
+        <span class="story-title">Валютные облигации</span>
+      </button>
+      <button class="story-item" data-story="5">
+        <span class="story-avatar story-avatar--6"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v6h-6"></path></svg></span>
+        <span class="story-title">Обновление приложения</span>
+      </button>
+    </div>
+
     <header class="header">
       <div class="portfolio-sum-row">
         <div class="portfolio-sum" id="sum-value">105 ₽</div>
@@ -55,76 +82,166 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
         Действия
       </button>
-      <button class="pill-btn" data-toast="1">
+      <button class="pill-btn" id="tab-history">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 16 14"></polyline></svg>
         История
       </button>
-      <button class="pill-btn" data-toast="1">
+      <button class="pill-btn" id="tab-analysis">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 4v8h8"></path></svg>
         Анализ
       </button>
     </nav>
 
-    <div class="subtabs">
-      <button class="subtab active" data-toast="1">Счета</button>
-      <button class="subtab" data-toast="1">Избранное</button>
+    <!-- Экран «Портфель» -->
+    <div class="view-panel active" id="view-portfolio">
+      <div class="subtabs">
+        <button class="subtab active" id="subtab-accounts">Счета</button>
+        <button class="subtab" id="subtab-favorites">Избранное</button>
+      </div>
+
+      <section class="accounts" id="accountsPanel">
+        <button class="account-row" data-toast="1">
+          <div class="account-info">
+            <div class="account-sum" data-full="65 ₽">65 ₽</div>
+            <div class="account-sub">Брокерский счёт · 11MD3A · Основной</div>
+          </div>
+          <div class="account-change positive" data-full="+0,57 ₽ · 0,89 %" data-percent="+ 0,89 %">+0,57 ₽ · 0,89 %</div>
+        </button>
+
+        <button class="account-row" data-toast="1">
+          <div class="account-info">
+            <div class="account-sum" data-full="38 ₽">38 ₽</div>
+            <div class="account-sub">ИИС · 144IMP · Основной</div>
+          </div>
+          <div class="account-change positive" data-full="+0,62 ₽ · 1,65 %" data-percent="+ 1,65 %">+0,62 ₽ · 1,65 %</div>
+        </button>
+
+        <button class="account-row" data-toast="1">
+          <div class="account-info">
+            <div class="account-sum" data-full="1 ₽">1 ₽</div>
+            <div class="account-sub">Инвесткопилка · 11MD3A/1CY8P · Основной</div>
+          </div>
+          <div class="account-change neutral" data-full="0 ₽ · 0 %" data-percent="0 %">0 ₽ · 0 %</div>
+        </button>
+
+        <button class="account-row" data-toast="1">
+          <div class="account-info">
+            <div class="account-sum" data-full="0 ₽">0 ₽</div>
+            <div class="account-sub">Фонды ВИМ · Портфель УК</div>
+          </div>
+          <div class="account-change neutral" data-full="0 ₽ · 0 %" data-percent="0 %">0 ₽ · 0 %</div>
+        </button>
+      </section>
+
+      <div class="favorites-empty" id="favoritesPanel" hidden>
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.3 6.2 20.5l1.1-6.5-4.7-4.6 6.5-1L12 2.7l2.9 5.7 6.5 1-4.7 4.6 1.1 6.5z"></path></svg>
+        <div class="favorites-empty-title">Добавьте инструменты в избранное</div>
+      </div>
+
+      <button class="configure-btn" data-toast="1">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        Настроить вид экрана
+      </button>
+
+      <div class="feed" id="feed">
+        <button class="feed-card feed-promo" data-toast="1">
+          <div class="feed-promo-title">Инвестируйте с умом</div>
+          <div class="feed-promo-sub">Готовые стратегии, аналитика и подборки инструментов — в одном месте</div>
+        </button>
+
+        <button class="feed-card" data-toast="1">
+          <div class="feed-card-title">Доход и надёжность</div>
+          <div class="feed-kv-row">
+            <span class="feed-kv-label">Доходность</span>
+            <span class="feed-kv-value">до 18% годовых</span>
+          </div>
+          <div class="feed-kv-row">
+            <span class="feed-kv-label">Защита капитала</span>
+            <span class="feed-kv-value">до 100% вложений</span>
+          </div>
+        </button>
+
+        <button class="feed-card" data-toast="1">
+          <div class="feed-card-title">Что купить на этой неделе</div>
+          <div class="feed-card-sub">Подборка: Лукойл, Сбербанк, ОФЗ 26238 — разбор аналитиков ВТБ Мои Инвестиции</div>
+        </button>
+
+        <button class="feed-card" data-toast="1">
+          <div class="feed-card-title">Структурные продукты</div>
+          <div class="feed-card-sub">Готовые стратегии с защитой капитала и потенциальной доходностью выше вклада</div>
+        </button>
+
+        <button class="feed-card" data-toast="1">
+          <div class="feed-card-title">Портфель на миллион</div>
+          <div class="feed-card-sub">Как распределить крупную сумму между акциями, облигациями и фондами</div>
+        </button>
+
+        <button class="feed-card" data-toast="1">
+          <div class="feed-card-title">Как инвестировать в отпуске</div>
+          <div class="feed-card-sub">Настройте автоследование и не пропускайте рыночные возможности</div>
+        </button>
+
+        <div class="feed-chips">
+          <button class="feed-chip" data-toast="1">Открыть новый субсчет</button>
+          <button class="feed-chip" data-toast="1">Маржинальная торговля</button>
+          <button class="feed-chip" data-toast="1">ИИС</button>
+        </div>
+
+        <div class="feed-card feed-section">
+          <div class="feed-card-title">Новые размещения</div>
+          <div class="feed-hlist" id="placementsList"></div>
+        </div>
+
+        <div class="feed-card feed-section">
+          <div class="feed-card-title">Топ от аналитиков</div>
+          <div class="feed-stocklist" id="analystStocksList"></div>
+          <button class="feed-pick-btn" data-toast="1">Подобрать</button>
+        </div>
+
+        <div class="feed-card feed-section">
+          <div class="feed-card-title">Инвестиционные идеи</div>
+          <div class="feed-hlist" id="ideasList"></div>
+        </div>
+
+        <div class="feed-card feed-mood">
+          <div class="feed-mood-top">
+            <div class="feed-card-title">Инвесторы <span class="feed-mood-positive">позитивны</span></div>
+            <span class="feed-mood-period">Месяц
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16c-.15 0-.28-.03-.41-.07a1.06 1.06 0 0 1-.35-.23l-4.95-4.91c-.2-.2-.29-.45-.29-.75 0-.31.09-.56.29-.75.2-.2.45-.29.75-.29.31 0 .56.09.76.29l4.2 4.17 4.19-4.17c.2-.2.45-.29.76-.29.3 0 .55.09.75.29.2.19.3.44.3.75 0 .3-.1.55-.3.75l-4.95 4.91c-.11.11-.23.18-.35.23-.13.04-.26.07-.4.07Z"></path></svg>
+            </span>
+          </div>
+          <div class="feed-mood-legend">
+            <span><span class="feed-mood-value feed-mood-value--buy">58,4&nbsp;%</span> Покупают</span>
+            <span>•</span>
+            <span><span class="feed-mood-value feed-mood-value--sell">41,6&nbsp;%</span> Продают</span>
+          </div>
+          <div class="feed-mood-bar">
+            <span class="feed-mood-bar-buy" style="width: 58.4%"></span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <section class="accounts">
-      <button class="account-row" data-toast="1">
-        <div class="account-info">
-          <div class="account-sum" data-full="65 ₽">65 ₽</div>
-          <div class="account-sub">Брокерский счёт · 11MD3A · Основной</div>
-        </div>
-        <div class="account-change positive" data-full="+0,57 ₽ · 0,89 %" data-percent="+ 0,89 %">+0,57 ₽ · 0,89 %</div>
-      </button>
+    <!-- Экран «История» -->
+    <div class="view-panel" id="view-history">
+      <div class="stub-title">История</div>
+      <div class="stub-empty">Список операций пуст</div>
+    </div>
 
-      <button class="account-row" data-toast="1">
-        <div class="account-info">
-          <div class="account-sum" data-full="38 ₽">38 ₽</div>
-          <div class="account-sub">ИИС · 144IMP · Основной</div>
-        </div>
-        <div class="account-change positive" data-full="+0,62 ₽ · 1,65 %" data-percent="+ 1,65 %">+0,62 ₽ · 1,65 %</div>
-      </button>
-
-      <button class="account-row" data-toast="1">
-        <div class="account-info">
-          <div class="account-sum" data-full="1 ₽">1 ₽</div>
-          <div class="account-sub">Инвесткопилка · 11MD3A/1CY8P · Основной</div>
-        </div>
-        <div class="account-change neutral" data-full="0 ₽ · 0 %" data-percent="0 %">0 ₽ · 0 %</div>
-      </button>
-
-      <button class="account-row" data-toast="1">
-        <div class="account-info">
-          <div class="account-sum" data-full="0 ₽">0 ₽</div>
-          <div class="account-sub">Фонды ВИМ · Портфель УК</div>
-        </div>
-        <div class="account-change neutral" data-full="0 ₽ · 0 %" data-percent="0 %">0 ₽ · 0 %</div>
-      </button>
-    </section>
-
-    <button class="configure-btn" data-toast="1">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-      Настроить вид экрана
-    </button>
-
-    <div class="promo-card" data-toast="1">
-      <img class="promo-image" src="https://headless-cms7.vtb.ru/projects/mpmi/files/store/widget/widget_3073.jpg" alt="" draggable="false" />
-      <span class="promo-text">10 призов по 100 000 ₽</span>
-      <button class="promo-close" aria-label="Закрыть">
-        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="2" x2="14" y2="14"></line><line x1="14" y1="2" x2="2" y2="14"></line></svg>
-      </button>
+    <!-- Экран «Анализ» -->
+    <div class="view-panel" id="view-analysis">
+      <div class="stub-title">Анализ</div>
+      <div class="stub-empty">Аналитика скоро появится</div>
     </div>
 
     <div class="bottom-spacer"></div>
   </div>
 
   <div class="bottom-card">
-    <div class="search-bar" data-toast="1">
+    <button class="search-bar" id="searchBarBtn">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-      🏆 ВТБ — лучший брокер года
-    </div>
+      Поиск акций, облигаций, фондов
+    </button>
 
     <nav class="bottom-nav">
       <button class="nav-item active" data-nav="search" aria-label="Поиск">
@@ -524,6 +641,36 @@
         </button>
       </div>
       <button class="refill-submit-btn active" id="filterApplyBtn">Применить</button>
+    </div>
+  </div>
+
+  <!-- Полноэкранная сторис -->
+  <div class="story-overlay" id="storyOverlay" role="dialog" aria-modal="true" aria-label="Сторис">
+    <button class="story-overlay-close" id="storyOverlayClose" aria-label="Закрыть">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><line x1="2" y1="2" x2="14" y2="14"></line><line x1="14" y1="2" x2="2" y2="14"></line></svg>
+    </button>
+    <div class="story-overlay-progress" id="storyOverlayProgress"></div>
+    <div class="story-overlay-body">
+      <div class="story-overlay-title" id="storyOverlayTitle"></div>
+      <div class="story-overlay-text" id="storyOverlayText"></div>
+    </div>
+  </div>
+
+  <!-- Поиск инструментов -->
+  <div class="sheet sheet--level2 sheet--fullscreen" id="searchSheet" role="dialog" aria-modal="true" aria-label="Поиск инструментов">
+    <div class="topup-header">
+      <button class="topup-back" id="searchBack" aria-label="Назад">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 6 9 12 15 18"></polyline></svg>
+      </button>
+      <div class="topup-title">Поиск инструментов</div>
+      <span class="topup-close-btn" aria-hidden="true"></span>
+    </div>
+    <div class="sheet-body">
+      <div class="search-input-row">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input class="search-input" id="searchInput" type="text" placeholder="Тикер или название компании" autocomplete="off" />
+      </div>
+      <div class="feed-stocklist" id="searchResultsList"></div>
     </div>
   </div>
 

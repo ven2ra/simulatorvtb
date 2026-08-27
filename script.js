@@ -11,6 +11,7 @@
   const destFilterSheet = document.getElementById("destFilterSheet");
   const bankPickerSheet = document.getElementById("bankPickerSheet");
   const filterSheet = document.getElementById("filterSheet");
+  const searchSheet = document.getElementById("searchSheet");
 
   let toastTimer = null;
   const stack = [];
@@ -119,6 +120,224 @@
     accountChanges.forEach((el) => {
       el.textContent = sumHidden ? el.dataset.percent : el.dataset.full;
     });
+  });
+
+  /* ---------- Главный экран: сторис, вкладки, лента ---------- */
+
+  const STORIES = [
+    {
+      title: "Топ-10 акций",
+      text: "Собрали 10 самых популярных акций у клиентов ВТБ Мои Инвестиции за последний месяц.",
+    },
+    {
+      title: "До 16% годовых",
+      text: "Подборка облигаций с низким риском и доходностью до 16% годовых к погашению.",
+    },
+    {
+      title: "Сохранность: +50%",
+      text: "Структурные продукты с защитой капитала до 100% и потенциальной доходностью выше вклада.",
+    },
+    {
+      title: "Портфель для ребёнка",
+      text: "Как открыть счёт на имя ребёнка и собрать портфель на долгосрочную цель.",
+    },
+    {
+      title: "Валютные облигации",
+      text: "Замещающие и валютные облигации для диверсификации портфеля.",
+    },
+    {
+      title: "Обновление приложения",
+      text: "Новый дизайн ленты, сторис и подборок — рассказываем, что изменилось.",
+    },
+  ];
+
+  const storyOverlay = document.getElementById("storyOverlay");
+  const storyOverlayTitle = document.getElementById("storyOverlayTitle");
+  const storyOverlayText = document.getElementById("storyOverlayText");
+
+  function openStory(index) {
+    const story = STORIES[index];
+    if (!story) return;
+    storyOverlayTitle.textContent = story.title;
+    storyOverlayText.textContent = story.text;
+    storyOverlay.classList.add("open");
+  }
+
+  document.querySelectorAll(".story-item").forEach((item) => {
+    item.addEventListener("click", () => openStory(Number(item.dataset.story)));
+  });
+
+  document.getElementById("storyOverlayClose").addEventListener("click", () => {
+    storyOverlay.classList.remove("open");
+  });
+
+  /* Верхние вкладки: Действия / История / Анализ */
+
+  const viewPortfolio = document.getElementById("view-portfolio");
+  const viewHistory = document.getElementById("view-history");
+  const viewAnalysis = document.getElementById("view-analysis");
+  const topPills = [document.getElementById("tab-actions"), document.getElementById("tab-history"), document.getElementById("tab-analysis")];
+
+  function switchView(name) {
+    viewPortfolio.classList.toggle("active", name === "portfolio");
+    viewHistory.classList.toggle("active", name === "history");
+    viewAnalysis.classList.toggle("active", name === "analysis");
+    topPills.forEach((pill) => pill.classList.toggle("active", pill.dataset.tab === name));
+  }
+
+  document.getElementById("tab-actions").dataset.tab = "portfolio";
+  document.getElementById("tab-history").dataset.tab = "history";
+  document.getElementById("tab-analysis").dataset.tab = "analysis";
+
+  document.getElementById("tab-actions").addEventListener("click", () => switchView("portfolio"));
+  document.getElementById("tab-history").addEventListener("click", () => switchView("history"));
+  document.getElementById("tab-analysis").addEventListener("click", () => switchView("analysis"));
+
+  switchView("portfolio");
+
+  /* Подвкладки: Счета / Избранное */
+
+  const subtabAccounts = document.getElementById("subtab-accounts");
+  const subtabFavorites = document.getElementById("subtab-favorites");
+  const accountsPanel = document.getElementById("accountsPanel");
+  const favoritesPanel = document.getElementById("favoritesPanel");
+
+  subtabAccounts.addEventListener("click", () => {
+    subtabAccounts.classList.add("active");
+    subtabFavorites.classList.remove("active");
+    accountsPanel.hidden = false;
+    favoritesPanel.hidden = true;
+  });
+
+  subtabFavorites.addEventListener("click", () => {
+    subtabFavorites.classList.add("active");
+    subtabAccounts.classList.remove("active");
+    accountsPanel.hidden = true;
+    favoritesPanel.hidden = false;
+  });
+
+  /* Демо-набор инструментов (invest.vtb.ru) */
+
+  const DEMO_STOCKS = [
+    { name: "Лукойл", ticker: "LKOH", price: "6 850 ₽", changeAbs: "+42 ₽", changePct: "+0,62 %", positive: true },
+    { name: "Сбербанк", ticker: "SBER", price: "289,4 ₽", changeAbs: "−1,2 ₽", changePct: "−0,41 %", positive: false },
+    { name: "Московская биржа", ticker: "MOEX", price: "214,6 ₽", changeAbs: "+3,8 ₽", changePct: "+1,80 %", positive: true },
+  ];
+
+  const DEMO_PLACEMENTS = [
+    { kind: "Фонд", name: "ВИМ — Ликвидность", value: "104,32 ₽", sub: "Цена пая" },
+    { kind: "Фонд", name: "Т-Капитал — Пассивный доход", value: "11,05 ₽", sub: "Цена пая" },
+    { kind: "Облигация", name: "ДОМ.РФ 3P-01", value: "16,5 % годовых", sub: "Купон · 2 года" },
+    { kind: "Облигация", name: "РЖД БО-05", value: "15,8 % годовых", sub: "Купон · 3 года" },
+    { kind: "Облигация", name: "Магнит 1P-08", value: "17,2 % годовых", sub: "Купон · 1,5 года" },
+    { kind: "Облигация", name: "Ростелеком 1P-10", value: "16,0 % годовых", sub: "Купон · 4 года" },
+  ];
+
+  const DEMO_IDEAS = [
+    { title: "Рост нефтегазового сектора", potential: "+18 %", sub: "Потенциал за 6 месяцев" },
+    { title: "Защита от волатильности", potential: "+9 %", sub: "Потенциал за 3 месяца" },
+    { title: "Дивидендная выборка", potential: "+12 %", sub: "Потенциал за 12 месяцев" },
+  ];
+
+  function renderAnalystStocks() {
+    const list = document.getElementById("analystStocksList");
+    list.innerHTML = "";
+    DEMO_STOCKS.forEach((stock) => {
+      const row = document.createElement("button");
+      row.className = "feed-stock-row";
+      row.innerHTML = `
+        <div>
+          <div class="feed-stock-name">${stock.name}</div>
+          <div class="feed-stock-ticker">${stock.ticker}</div>
+        </div>
+        <div class="feed-stock-right">
+          <div class="feed-stock-price">${stock.price}</div>
+          <div class="feed-stock-change ${stock.positive ? "positive" : "negative"}">${stock.changeAbs} · ${stock.changePct}</div>
+        </div>
+      `;
+      row.addEventListener("click", () => showToast(`Демо: карточка «${stock.name}» недоступна`));
+      list.appendChild(row);
+    });
+  }
+
+  function renderPlacements() {
+    const list = document.getElementById("placementsList");
+    list.innerHTML = "";
+    DEMO_PLACEMENTS.forEach((item) => {
+      const card = document.createElement("button");
+      card.className = "feed-hcard";
+      card.innerHTML = `
+        <div class="feed-hcard-kind">${item.kind}</div>
+        <div class="feed-hcard-name">${item.name}</div>
+        <div class="feed-hcard-value">${item.value}</div>
+        <div class="feed-hcard-sub">${item.sub}</div>
+      `;
+      card.addEventListener("click", () => showToast(`Демо: карточка «${item.name}» недоступна`));
+      list.appendChild(card);
+    });
+  }
+
+  function renderIdeas() {
+    const list = document.getElementById("ideasList");
+    list.innerHTML = "";
+    DEMO_IDEAS.forEach((idea) => {
+      const card = document.createElement("button");
+      card.className = "feed-hcard";
+      card.innerHTML = `
+        <div class="feed-hcard-name">${idea.title}</div>
+        <div class="feed-hcard-potential">${idea.potential}</div>
+        <div class="feed-hcard-sub">${idea.sub}</div>
+      `;
+      card.addEventListener("click", () => showToast(`Демо: идея «${idea.title}» недоступна`));
+      list.appendChild(card);
+    });
+  }
+
+  renderAnalystStocks();
+  renderPlacements();
+  renderIdeas();
+
+  /* Поиск инструментов */
+
+  document.getElementById("searchBarBtn").addEventListener("click", () => {
+    renderSearchResults("");
+    document.getElementById("searchInput").value = "";
+    openScreen(searchSheet);
+    document.getElementById("searchInput").focus();
+  });
+  document.getElementById("searchBack").addEventListener("click", closeTop);
+
+  function renderSearchResults(query) {
+    const list = document.getElementById("searchResultsList");
+    list.innerHTML = "";
+    const q = query.trim().toLowerCase();
+    const matches = DEMO_STOCKS.filter(
+      (s) => !q || s.name.toLowerCase().includes(q) || s.ticker.toLowerCase().includes(q)
+    );
+    if (matches.length === 0) {
+      list.innerHTML = '<div class="picker-empty">Ничего не найдено</div>';
+      return;
+    }
+    matches.forEach((stock) => {
+      const row = document.createElement("button");
+      row.className = "feed-stock-row";
+      row.innerHTML = `
+        <div>
+          <div class="feed-stock-name">${stock.name}</div>
+          <div class="feed-stock-ticker">${stock.ticker}</div>
+        </div>
+        <div class="feed-stock-right">
+          <div class="feed-stock-price">${stock.price}</div>
+          <div class="feed-stock-change ${stock.positive ? "positive" : "negative"}">${stock.changeAbs} · ${stock.changePct}</div>
+        </div>
+      `;
+      row.addEventListener("click", () => showToast(`Демо: карточка «${stock.name}» недоступна`));
+      list.appendChild(row);
+    });
+  }
+
+  document.getElementById("searchInput").addEventListener("input", (e) => {
+    renderSearchResults(e.target.value);
   });
 
   /* ---------- Пополнение со счета банка ---------- */
