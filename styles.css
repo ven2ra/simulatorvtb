@@ -1027,6 +1027,11 @@ body.sheet-open .app {
   color: #fff;
   cursor: pointer;
   flex: 0 0 auto;
+  transition: background-color 0.25s ease;
+}
+
+.picker-active-filter-chip {
+  transition: background-color 0.25s ease;
 }
 
 .picker-filter-dot {
