@@ -179,10 +179,10 @@
     },
   ];
   let selectedDestId = "d-brok-main";
-  let destMarketFilter = null; // Set of markets, null/empty = show all
-  let destAgreementFilter = null; // Set of agreements, null/empty = show all
-  let destFilterMarketChoice = new Set();
-  let destFilterAgreementChoice = new Set();
+  let destMarketFilter = null; // single market string, null = show all
+  let destAgreementFilter = null; // single agreement string, null = show all
+  let destFilterMarketChoice = null;
+  let destFilterAgreementChoice = null;
 
   function getDestById(id) {
     return destAccounts.find((a) => a.id === id) || null;
@@ -214,13 +214,16 @@
     const dest = getDestById(selectedDestId);
     const sumEl = document.getElementById("refillDestSum");
     const subEl = document.getElementById("refillDestSub");
+    const avatarEl = document.getElementById("refillDestAvatar");
     if (!dest) {
       sumEl.textContent = "Выберите счёт";
       subEl.textContent = "";
+      avatarEl.innerHTML = "";
       return;
     }
     sumEl.textContent = formatAmountDisplay(dest.balance, "RUB");
     subEl.textContent = `${dest.type} • ${destSubLabel(dest)}`;
+    avatarEl.innerHTML = brokerAvatarInnerSVG(dest.icon);
   }
 
   function refreshSourceRow() {
@@ -331,9 +334,8 @@
   document.getElementById("destFilterClose").addEventListener("click", closeTop);
 
   function destAccountVisible(acc) {
-    const marketOk = !destMarketFilter || destMarketFilter.size === 0 || destMarketFilter.has(acc.market);
-    const agreementOk =
-      !destAgreementFilter || destAgreementFilter.size === 0 || destAgreementFilter.has(acc.agreement);
+    const marketOk = !destMarketFilter || destMarketFilter === acc.market;
+    const agreementOk = !destAgreementFilter || destAgreementFilter === acc.agreement;
     return marketOk && agreementOk;
   }
 
@@ -413,35 +415,37 @@
     },
   };
 
-  function brokerAvatarSVG(paletteKey) {
+  function brokerAvatarInnerSVG(paletteKey) {
     const uid = `pb${avatarUidCounter++}`;
     const palette = BROKER_AVATAR_PALETTE[paletteKey] || BROKER_AVATAR_PALETTE.account;
     return `
-      <span class="refill-avatar refill-avatar--vtb">
-        <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
-          <defs>
-            <radialGradient cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(40,0,0,40,20,0)" id="${uid}Radial">
-              <stop stop-color="${palette.radial[0]}" offset="0.458007812"></stop>
-              <stop stop-color="${palette.radial[1]}" offset="0.78439939"></stop>
-              <stop stop-color="${palette.radial[2]}" offset="1"></stop>
-            </radialGradient>
-            <linearGradient x1="0" x2="20" y1="2" y2="40" gradientUnits="userSpaceOnUse" id="${uid}Linear1">
-              <stop stop-color="#fff" offset="0"></stop>
-              <stop stop-color="#fff" offset="1" stop-opacity="0"></stop>
-            </linearGradient>
-            <linearGradient x1="40" x2="2.5" y1="40" y2="2.5" gradientUnits="userSpaceOnUse" id="${uid}Linear2">
-              <stop stop-color="#fff" offset="0"></stop>
-              <stop stop-color="#fff" offset="1" stop-opacity="0"></stop>
-            </linearGradient>
-          </defs>
-          <rect width="40" height="40" rx="12" fill="url(#${uid}Radial)"></rect>
-          <rect width="40" height="40" rx="12" fill="#fff" fill-opacity="0.7"></rect>
-          <rect width="39" height="39" x="0.5" y="0.5" rx="11.5" stroke="url(#${uid}Linear1)"></rect>
-          <rect width="39" height="39" x="0.5" y="0.5" rx="11.5" stroke="url(#${uid}Linear2)" stroke-opacity="0.6"></rect>
-          <path d="M10.587 28.4125C10.786 28.6111 11.0051 28.7594 11.2446 28.8573C11.4768 28.9524 11.7285 29 11.9998 29L28.0002 29C28.5503 29 29.0213 28.8042 29.413 28.4125C29.8047 28.0208 30 27.55 30 27L30 16C30 15.45 29.8047 14.9792 29.413 14.5875C29.0213 14.1958 28.5503 14 28.0002 14L25.5556 13.9118C24.7233 12.8889 24.2697 11.4445 23.4125 10.5875C23.0208 10.1958 22.5499 10 21.9998 10L18.0002 10C17.729 10 17.4772 10.0476 17.245 10.1427C17.0063 10.2406 16.7864 10.3889 16.5875 10.5875C15.7259 11.4492 15.2539 12.9591 14.4444 14L11.9998 14C11.7285 14 11.4768 14.0476 11.2446 14.1427C11.0051 14.2406 10.786 14.3889 10.587 14.5875C10.3852 14.79 10.2351 15.0136 10.1367 15.2584C10.0456 15.4871 10 15.7343 10 16L10 27C10 27.55 10.1953 28.0208 10.587 28.4125ZM23.4125 14L16.5875 14L18.0002 12L21.9998 12L23.4125 14ZM19.9957 19.3641C18.6784 19.3641 12.0052 18.2255 12.0052 18.2255L11.9965 19.9247C11.9965 19.9247 15.3494 20.496 17.7778 20.8265L17.7778 21.1765C17.7778 21.7938 18.2747 22.2941 18.8889 22.2941L21.1111 22.2941C21.7253 22.2941 22.2222 21.7938 22.2222 21.1765L22.2222 20.8247C24.6506 20.493 27.997 19.9212 27.997 19.9212L27.9991 18.2301C27.9991 18.2301 21.3151 19.3641 19.9957 19.3641Z" fill="${palette.icon}" fill-rule="evenodd"></path>
-        </svg>
-      </span>
+      <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+        <defs>
+          <radialGradient cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(40,0,0,40,20,0)" id="${uid}Radial">
+            <stop stop-color="${palette.radial[0]}" offset="0.458007812"></stop>
+            <stop stop-color="${palette.radial[1]}" offset="0.78439939"></stop>
+            <stop stop-color="${palette.radial[2]}" offset="1"></stop>
+          </radialGradient>
+          <linearGradient x1="0" x2="20" y1="2" y2="40" gradientUnits="userSpaceOnUse" id="${uid}Linear1">
+            <stop stop-color="#fff" offset="0"></stop>
+            <stop stop-color="#fff" offset="1" stop-opacity="0"></stop>
+          </linearGradient>
+          <linearGradient x1="40" x2="2.5" y1="40" y2="2.5" gradientUnits="userSpaceOnUse" id="${uid}Linear2">
+            <stop stop-color="#fff" offset="0"></stop>
+            <stop stop-color="#fff" offset="1" stop-opacity="0"></stop>
+          </linearGradient>
+        </defs>
+        <rect width="40" height="40" rx="12" fill="url(#${uid}Radial)"></rect>
+        <rect width="40" height="40" rx="12" fill="#fff" fill-opacity="0.7"></rect>
+        <rect width="39" height="39" x="0.5" y="0.5" rx="11.5" stroke="url(#${uid}Linear1)"></rect>
+        <rect width="39" height="39" x="0.5" y="0.5" rx="11.5" stroke="url(#${uid}Linear2)" stroke-opacity="0.6"></rect>
+        <path d="M10.587 28.4125C10.786 28.6111 11.0051 28.7594 11.2446 28.8573C11.4768 28.9524 11.7285 29 11.9998 29L28.0002 29C28.5503 29 29.0213 28.8042 29.413 28.4125C29.8047 28.0208 30 27.55 30 27L30 16C30 15.45 29.8047 14.9792 29.413 14.5875C29.0213 14.1958 28.5503 14 28.0002 14L25.5556 13.9118C24.7233 12.8889 24.2697 11.4445 23.4125 10.5875C23.0208 10.1958 22.5499 10 21.9998 10L18.0002 10C17.729 10 17.4772 10.0476 17.245 10.1427C17.0063 10.2406 16.7864 10.3889 16.5875 10.5875C15.7259 11.4492 15.2539 12.9591 14.4444 14L11.9998 14C11.7285 14 11.4768 14.0476 11.2446 14.1427C11.0051 14.2406 10.786 14.3889 10.587 14.5875C10.3852 14.79 10.2351 15.0136 10.1367 15.2584C10.0456 15.4871 10 15.7343 10 16L10 27C10 27.55 10.1953 28.0208 10.587 28.4125ZM23.4125 14L16.5875 14L18.0002 12L21.9998 12L23.4125 14ZM19.9957 19.3641C18.6784 19.3641 12.0052 18.2255 12.0052 18.2255L11.9965 19.9247C11.9965 19.9247 15.3494 20.496 17.7778 20.8265L17.7778 21.1765C17.7778 21.7938 18.2747 22.2941 18.8889 22.2941L21.1111 22.2941C21.7253 22.2941 22.2222 21.7938 22.2222 21.1765L22.2222 20.8247C24.6506 20.493 27.997 19.9212 27.997 19.9212L27.9991 18.2301C27.9991 18.2301 21.3151 19.3641 19.9957 19.3641Z" fill="${palette.icon}" fill-rule="evenodd"></path>
+      </svg>
     `;
+  }
+
+  function brokerAvatarSVG(paletteKey) {
+    return `<span class="refill-avatar refill-avatar--vtb">${brokerAvatarInnerSVG(paletteKey)}</span>`;
   }
 
   function accountRowHTML(acc, selected) {
@@ -576,9 +580,8 @@
   });
 
   function updateDestFilterButtonState() {
-    const isFiltered =
-      (destMarketFilter && destMarketFilter.size > 0) || (destAgreementFilter && destAgreementFilter.size > 0);
-    document.getElementById("destFilterOpenBtn").classList.toggle("active", !!isFiltered);
+    const isFiltered = !!destMarketFilter || !!destAgreementFilter;
+    document.getElementById("destFilterOpenBtn").classList.toggle("active", isFiltered);
     document.getElementById("destFilterDot").hidden = !isFiltered;
   }
 
@@ -600,36 +603,36 @@
     }
 
     if (destMarketFilter) {
-      destMarketFilter.forEach((market) => {
-        addChip(market, () => destMarketFilter.delete(market));
+      addChip(destMarketFilter, () => {
+        destMarketFilter = null;
       });
     }
     if (destAgreementFilter) {
-      destAgreementFilter.forEach((agreement) => {
-        addChip(agreement, () => destAgreementFilter.delete(agreement));
+      addChip(destAgreementFilter, () => {
+        destAgreementFilter = null;
       });
     }
   }
 
   function updateDestFilterPills() {
     document.querySelectorAll("#destMarketChips .filter-pill").forEach((pill) => {
-      pill.classList.toggle("selected", destFilterMarketChoice.has(pill.dataset.market));
+      pill.classList.toggle("selected", pill.dataset.market === destFilterMarketChoice);
     });
     document.querySelectorAll("#destAgreementChips .filter-pill").forEach((pill) => {
-      pill.classList.toggle("selected", destFilterAgreementChoice.has(pill.dataset.agreement));
+      pill.classList.toggle("selected", pill.dataset.agreement === destFilterAgreementChoice);
     });
   }
 
   function updateDestFilterApplyState() {
     const btn = document.getElementById("destFilterApplyBtn");
-    const active = destFilterMarketChoice.size > 0 || destFilterAgreementChoice.size > 0;
+    const active = !!destFilterMarketChoice || !!destFilterAgreementChoice;
     btn.disabled = !active;
     btn.classList.toggle("active", active);
   }
 
   document.getElementById("destFilterOpenBtn").addEventListener("click", () => {
-    destFilterMarketChoice = destMarketFilter ? new Set(destMarketFilter) : new Set();
-    destFilterAgreementChoice = destAgreementFilter ? new Set(destAgreementFilter) : new Set();
+    destFilterMarketChoice = destMarketFilter;
+    destFilterAgreementChoice = destAgreementFilter;
     updateDestFilterPills();
     updateDestFilterApplyState();
     openScreen(destFilterSheet);
@@ -638,11 +641,7 @@
   document.querySelectorAll("#destMarketChips .filter-pill").forEach((pill) => {
     pill.addEventListener("click", () => {
       const market = pill.dataset.market;
-      if (destFilterMarketChoice.has(market)) {
-        destFilterMarketChoice.delete(market);
-      } else {
-        destFilterMarketChoice.add(market);
-      }
+      destFilterMarketChoice = destFilterMarketChoice === market ? null : market;
       updateDestFilterPills();
       updateDestFilterApplyState();
     });
@@ -651,20 +650,16 @@
   document.querySelectorAll("#destAgreementChips .filter-pill").forEach((pill) => {
     pill.addEventListener("click", () => {
       const agreement = pill.dataset.agreement;
-      if (destFilterAgreementChoice.has(agreement)) {
-        destFilterAgreementChoice.delete(agreement);
-      } else {
-        destFilterAgreementChoice.add(agreement);
-      }
+      destFilterAgreementChoice = destFilterAgreementChoice === agreement ? null : agreement;
       updateDestFilterPills();
       updateDestFilterApplyState();
     });
   });
 
   document.getElementById("destFilterApplyBtn").addEventListener("click", () => {
-    if (destFilterMarketChoice.size === 0 && destFilterAgreementChoice.size === 0) return;
-    destMarketFilter = new Set(destFilterMarketChoice);
-    destAgreementFilter = new Set(destFilterAgreementChoice);
+    if (!destFilterMarketChoice && !destFilterAgreementChoice) return;
+    destMarketFilter = destFilterMarketChoice;
+    destAgreementFilter = destFilterAgreementChoice;
 
     const currentDest = getDestById(selectedDestId);
     if (!currentDest || !destAccountVisible(currentDest)) {
