@@ -441,7 +441,7 @@
       renderBankPicker();
       renderPickerHeaderChip();
     });
-    actions.insertBefore(chip, document.getElementById("filterOpenBtn"));
+    actions.appendChild(chip);
   }
 
   document.getElementById("filterOpenBtn").addEventListener("click", () => {
