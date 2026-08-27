@@ -979,35 +979,65 @@ body.sheet-open .app {
 }
 
 .picker-title {
-  font-size: 19px;
-  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  color: rgb(24, 25, 28);
   flex: 1;
+}
+
+.picker-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+}
+
+.picker-active-filter-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  background: rgb(24, 25, 28);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.picker-active-filter-chip svg {
+  color: #75767f;
 }
 
 .picker-filter-btn {
   position: relative;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   border: none;
-  background: var(--neutral-bg);
+  background: rgb(24, 25, 28);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-primary);
+  color: #fff;
   cursor: pointer;
   flex: 0 0 auto;
 }
 
 .picker-filter-dot {
   position: absolute;
-  top: 4px;
-  right: 4px;
+  top: 5px;
+  right: 6px;
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: rgb(203, 0, 0);
-  border: 1.5px solid var(--card);
+  border: 1.5px solid rgb(24, 25, 28);
 }
 
 .picker-account-row {
@@ -1028,7 +1058,7 @@ body.sheet-open .app {
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 1.5px solid var(--text-tertiary);
+  border: 1.5px solid rgb(178, 178, 183);
   flex: 0 0 auto;
   display: flex;
   align-items: center;
@@ -1041,8 +1071,8 @@ body.sheet-open .app {
 
 .picker-radio.checked::after {
   content: "";
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--accent);
 }
@@ -1053,14 +1083,20 @@ body.sheet-open .app {
 }
 
 .picker-account-name {
+  display: block;
   font-size: 16px;
+  line-height: 20px;
   font-weight: 500;
+  color: rgb(24, 25, 28);
 }
 
 .picker-account-sub {
-  font-size: 13px;
-  color: var(--text-secondary);
-  margin-top: 2px;
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  color: rgb(117, 118, 127);
+  margin-top: 4px;
 }
 
 .picker-account-sum {
@@ -1089,7 +1125,8 @@ body.sheet-open .app {
   flex: 1;
   text-align: left;
   font-size: 16px;
-  color: var(--text-tertiary);
+  line-height: 20px;
+  color: rgb(178, 178, 183);
 }
 
 .picker-zero-toggle svg {

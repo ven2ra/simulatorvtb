@@ -148,7 +148,9 @@
   function formatRub(n) {
     const rounded = Math.round(n * 100) / 100;
     const str = rounded % 1 === 0 ? String(rounded) : rounded.toFixed(2).replace(".", ",");
-    return str;
+    const [intPart, decPart] = str.split(",");
+    const intFormatted = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return decPart ? `${intFormatted},${decPart}` : intFormatted;
   }
 
   function formatAmountDisplay(n, currency) {
@@ -266,6 +268,7 @@
 
   document.getElementById("refillSourceRow").addEventListener("click", () => {
     renderBankPicker();
+    renderPickerHeaderChip();
     openScreen(bankPickerSheet);
   });
 
@@ -305,14 +308,46 @@
     });
   }
 
+  let avatarUidCounter = 0;
+  function accountAvatarSVG() {
+    const uid = `pa${avatarUidCounter++}`;
+    return `
+      <span class="refill-avatar refill-avatar--vtb">
+        <svg viewBox="0 0 40 40" width="40" height="40" fill="none">
+          <defs>
+            <radialGradient cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(40,0,0,40,20,0)" id="${uid}Radial">
+              <stop stop-color="rgb(131,182,255)" offset="0.458007812"></stop>
+              <stop stop-color="rgb(68,145,255)" offset="0.78439939"></stop>
+              <stop stop-color="rgb(8,95,228)" offset="1"></stop>
+            </radialGradient>
+            <linearGradient x1="0" x2="20" y1="2" y2="40" gradientUnits="userSpaceOnUse" id="${uid}Linear1">
+              <stop stop-color="#fff" offset="0"></stop>
+              <stop stop-color="#fff" offset="1" stop-opacity="0"></stop>
+            </linearGradient>
+            <linearGradient x1="40" x2="2.5" y1="40" y2="2.5" gradientUnits="userSpaceOnUse" id="${uid}Linear2">
+              <stop stop-color="#fff" offset="0"></stop>
+              <stop stop-color="#fff" offset="1" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+          <rect width="40" height="40" rx="12" fill="url(#${uid}Radial)"></rect>
+          <rect width="40" height="40" rx="12" fill="#fff" fill-opacity="0.7"></rect>
+          <rect width="39" height="39" x="0.5" y="0.5" rx="11.5" stroke="url(#${uid}Linear1)"></rect>
+          <rect width="39" height="39" x="0.5" y="0.5" rx="11.5" stroke="url(#${uid}Linear2)" stroke-opacity="0.6"></rect>
+          <path d="M29.78 16.5H12.7L13.93 13H31l-1.22 3.5Zm-.61 1.75H12.08l-1.23 3.5H27.93l1.24-3.5Zm-18.93 5.25 17.08.004L26.08 27H9l1.24-3.5Z" fill="rgb(51,149,255)" fill-rule="evenodd"></path>
+        </svg>
+      </span>
+    `;
+  }
+
   function accountRowHTML(acc, selected) {
     return `
-      <span class="picker-radio${selected ? " checked" : ""}"></span>
+      ${accountAvatarSVG()}
       <span class="picker-account-info">
-        <span class="picker-account-name">${acc.name}</span>
-        <span class="picker-account-sub">№ ${acc.number}</span>
+        <span class="picker-account-name">${formatRub(acc.balance)} ${CURRENCY_SYMBOL[acc.currency]}</span>
+        <span class="picker-account-sub">${acc.name}</span>
+        <span class="picker-account-sub">• ${acc.number}</span>
       </span>
-      <span class="picker-account-sum">${formatRub(acc.balance)} ${CURRENCY_SYMBOL[acc.currency]}</span>
+      <span class="picker-radio${selected ? " checked" : ""}"></span>
     `;
   }
 
@@ -372,6 +407,27 @@
     closeTop();
   }
 
+  function renderPickerHeaderChip() {
+    const actions = document.getElementById("pickerHeaderActions");
+    const existing = document.getElementById("pickerActiveFilterChip");
+    if (existing) existing.remove();
+    if (!appliedCurrencyFilter || appliedCurrencyFilter.size !== 1) return;
+    const currency = Array.from(appliedCurrencyFilter)[0];
+    const label = currency === "RUB" ? "Рубль" : "Юань";
+    const chip = document.createElement("button");
+    chip.className = "picker-active-filter-chip";
+    chip.id = "pickerActiveFilterChip";
+    chip.innerHTML = `${label}<svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="m7.99 8.99-3.47 3.48c-.13.13-.3.19-.5.19s-.37-.06-.5-.19a.678.678 0 0 1-.19-.5c0-.2.06-.37.19-.5L7 8 3.52 4.52a.678.678 0 0 1-.19-.5c0-.2.06-.37.19-.5s.3-.19.5-.19.37.06.5.19L7.99 7l3.48-3.48c.13-.13.3-.19.5-.19s.37.06.5.19.19.3.19.5-.06.37-.19.5L8.99 8l3.48 3.47c.13.13.19.3.19.5s-.06.37-.19.5-.3.19-.5.19-.37-.06-.5-.19L7.99 8.99Z"></path></svg>`;
+    chip.addEventListener("click", () => {
+      appliedCurrencyFilter = null;
+      document.getElementById("filterDot").hidden = true;
+      zeroSectionOpen = false;
+      renderBankPicker();
+      renderPickerHeaderChip();
+    });
+    actions.insertBefore(chip, document.getElementById("filterOpenBtn"));
+  }
+
   document.getElementById("filterOpenBtn").addEventListener("click", () => {
     filterSelection = appliedCurrencyFilter ? new Set(appliedCurrencyFilter) : new Set();
     document.querySelectorAll(".filter-chip").forEach((chip) => {
@@ -428,6 +484,7 @@
 
     zeroSectionOpen = false;
     renderBankPicker();
+    renderPickerHeaderChip();
     closeTop();
   });
 
