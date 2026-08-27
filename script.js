@@ -12,6 +12,7 @@
   const bankPickerSheet = document.getElementById("bankPickerSheet");
   const filterSheet = document.getElementById("filterSheet");
   const searchSheet = document.getElementById("searchSheet");
+  const infoSheet = document.getElementById("infoSheet");
 
   let toastTimer = null;
   const stack = [];
@@ -218,19 +219,111 @@
 
   /* Демо-набор инструментов (invest.vtb.ru) */
 
+  function stockAvatarHTML(letters, bg) {
+    return `<span class="feed-stock-avatar" style="background:${bg}">${letters}</span>`;
+  }
+
   const DEMO_STOCKS = [
-    { name: "Лукойл", ticker: "LKOH", price: "6 850 ₽", changeAbs: "+42 ₽", changePct: "+0,62 %", positive: true },
-    { name: "Сбербанк", ticker: "SBER", price: "289,4 ₽", changeAbs: "−1,2 ₽", changePct: "−0,41 %", positive: false },
-    { name: "Московская биржа", ticker: "MOEX", price: "214,6 ₽", changeAbs: "+3,8 ₽", changePct: "+1,80 %", positive: true },
+    { name: "Лукойл", ticker: "LKOH", price: "4 305,5 ₽", changeAbs: "143,5 ₽", changePct: "3,4 %", positive: true, avatar: stockAvatarHTML("ЛК", "rgb(213,29,29)") },
+    { name: "ДОМ.РФ", ticker: "DOMRF", price: "2 152,4 ₽", changeAbs: "12,6 ₽", changePct: "0,6 %", positive: true, avatar: stockAvatarHTML("ДР", "rgb(19,66,53)") },
+    { name: "Сургутнефтегаз-п", ticker: "SNGSP", price: "42,5 ₽", changeAbs: "1 ₽", changePct: "2,3 %", positive: true, avatar: stockAvatarHTML("СФ", "rgb(63,74,92)") },
+    { name: "Мать и Дитя", ticker: "MDMG", price: "1 304 ₽", changeAbs: "10,8 ₽", changePct: "0,8 %", positive: true, avatar: stockAvatarHTML("МД", "rgb(224,120,60)") },
+    { name: "Новатэк", ticker: "NVTK", price: "934,7 ₽", changeAbs: "13,2 ₽", changePct: "1,4 %", positive: true, avatar: stockAvatarHTML("НВ", "rgb(0,122,255)") },
+    { name: "Московская биржа", ticker: "MOEX", price: "152 ₽", changeAbs: "0,3 ₽", changePct: "0,2 %", positive: true, avatar: stockAvatarHTML("МБ", "rgb(213,29,29)") },
+    { name: "Совкомфлот", ticker: "FLOT", price: "76,5 ₽", changeAbs: "3,4 ₽", changePct: "4,7 %", positive: true, avatar: stockAvatarHTML("СК", "rgb(0,90,180)") },
+    { name: "Газпром", ticker: "GAZP", price: "85 ₽", changeAbs: "2,7 ₽", changePct: "3,3 %", positive: true, avatar: stockAvatarHTML("ГП", "rgb(0,132,110)") },
+    { name: "Сбербанк", ticker: "SBER", price: "270,2 ₽", changeAbs: "2,9 ₽", changePct: "1,1 %", positive: true, avatar: stockAvatarHTML("СБ", "rgb(33,160,80)") },
+    { name: "Яндекс", ticker: "YDEX", price: "3 478 ₽", changeAbs: "22 ₽", changePct: "0,6 %", positive: true, avatar: stockAvatarHTML("Я", "rgb(213,29,29)") },
+  ];
+
+  const DEMO_BONDS_RUB = [
+    {
+      title: "До 1 года",
+      items: [{ name: "Автодр5Р16", rate: "14,3 %к оферте", rating: 5, avatar: stockAvatarHTML("АД", "rgb(224,120,60)") }],
+    },
+    {
+      title: "От 1 года до 3 лет",
+      items: [
+        { name: "ИКС5ФиЗ17", rate: "15,4 %к оферте", rating: 5, avatar: stockAvatarHTML("X5", "rgb(33,160,80)") },
+        { name: "РусГид2О08", rate: "15 %к погашению", rating: 5, avatar: stockAvatarHTML("РГ", "rgb(0,122,255)") },
+        { name: "ФПК2Р01", rate: "15,9 %к погашению", rating: 5, avatar: stockAvatarHTML("ФК", "rgb(213,29,29)") },
+        { name: "ГПБ001Р17Р", rate: "15,8 %к оферте", rating: 5, avatar: stockAvatarHTML("ГБ", "rgb(0,90,180)") },
+        { name: "ВымпелК1Р8", rate: "15,7 %к погашению", rating: 5, avatar: stockAvatarHTML("ВК", "rgb(224,180,0)") },
+      ],
+    },
+    {
+      title: "От 3 лет до 5 лет",
+      items: [
+        { name: "Магнит1Р15", rate: "15,2 %к погашению", rating: 5, avatar: stockAvatarHTML("МТ", "rgb(213,29,29)") },
+        { name: "Ростел2Р05", rate: "14,9 %к оферте", rating: 4, avatar: stockAvatarHTML("РТ", "rgb(0,90,180)") },
+      ],
+    },
+  ];
+
+  const DEMO_BONDS_CNY = [
+    {
+      title: "До 3 лет",
+      items: [
+        { name: "ГазКап3Р20", rate: "9 %к погашению", rating: 5, avatar: stockAvatarHTML("ГК", "rgb(0,90,180)") },
+        { name: "ФосАгро2П5", rate: "8,4 %к погашению", rating: 5, avatar: stockAvatarHTML("ФА", "rgb(33,160,80)") },
+        { name: "ЭНплГ1РС10", rate: "9,5 %к погашению", rating: 4, avatar: stockAvatarHTML("ЭН", "rgb(33,160,80)") },
+      ],
+    },
+    {
+      title: "От 3 лет до 5 лет",
+      items: [
+        { name: "РЖД 1P-51R", rate: "9 %к погашению", rating: 5, avatar: stockAvatarHTML("РЖ", "rgb(213,29,29)") },
+        { name: "Акрон Б2Р3", rate: "8,8 %к погашению", rating: 5, avatar: stockAvatarHTML("АК", "rgb(213,29,29)") },
+      ],
+    },
   ];
 
   const DEMO_PLACEMENTS = [
-    { kind: "Фонд", name: "ВИМ — Ликвидность", value: "104,32 ₽", sub: "Цена пая" },
-    { kind: "Фонд", name: "Т-Капитал — Пассивный доход", value: "11,05 ₽", sub: "Цена пая" },
-    { kind: "Облигация", name: "ДОМ.РФ 3P-01", value: "16,5 % годовых", sub: "Купон · 2 года" },
-    { kind: "Облигация", name: "РЖД БО-05", value: "15,8 % годовых", sub: "Купон · 3 года" },
-    { kind: "Облигация", name: "Магнит 1P-08", value: "17,2 % годовых", sub: "Купон · 1,5 года" },
-    { kind: "Облигация", name: "Ростелеком 1P-10", value: "16,0 % годовых", sub: "Купон · 4 года" },
+    { name: "ЗПИКФ ВИМ Недвижимость", kind: "Фонды", code: "SFO", price: "Цена: 1 246,04 ₽" },
+    { name: "ЗПИФН ВИМ РД 3", kind: "Фонды", code: "SFO", price: "Цена: 1 049,49 ₽" },
+    { name: "ЗПИФ ВИМ Рентный доход", kind: "Фонды", code: "SFO", price: "Цена: 1 050,00 ₽" },
+  ];
+
+  const DEMO_FUNDS = [
+    { name: "Российские облигации (OBLG)", kind: "Фонд", pct: "20 %", sub: "за 12 месяцев" },
+    { name: "ВИМ-Накопительный резерв", kind: "Фонд", pct: "28 %", sub: "за 12 месяцев" },
+    { name: "Ликвидность", kind: "Фонд", pct: "14,1 %", sub: "за 12 месяцев" },
+  ];
+
+  const DEMO_STRUCT_BONDS = [
+    { name: "ВТБ Б-1-417 «Потенциал ОФЗ»", kind: "Облигации", rate: "23,5 % в ₽", sub: "На 1 год" },
+    { name: "ВТБ Б-1-415 «Сохранность: +50%»", kind: "Облигации", rate: "13,95 % в ₽", sub: "На 3 г. 7 мес." },
+    { name: "ВТБ Б-1-420 «Ставка на рост»", kind: "Облигации", rate: "До 14,8 % в ₽", sub: "На 2 года" },
+  ];
+
+  const DEMO_STRUCT_OBLIGATIONS = [
+    { name: "СО СФО ВТБ ИП «Фавориты стратегии»", kind: "Облигации", rate: "~53 % годовых", sub: "1 год" },
+    { name: "СО СФО ВТБ ИП «Инвестиция в разницу Х2: Технологии»", kind: "Облигации", rate: "~25 % годовых", sub: "6 мес." },
+    { name: "СО СФО ВТБ ИП «Индекс с защитой»", kind: "Облигации", rate: "~29 % годовых", sub: "6 мес." },
+  ];
+
+  const DEMO_STRUCT_PRODUCTS = [
+    {
+      name: "Перспектива: Газпром (3 мес.)",
+      sub: "Поставочный контракт с фиксированным доходом",
+      yield: "24 % год.",
+      amount: "100 000 ₽",
+      maturity: "29.11.2026",
+    },
+    {
+      name: "Перспектива: Сбербанк (6 мес.)",
+      sub: "Поставочный контракт с фиксированным доходом",
+      yield: "19 % год.",
+      amount: "50 000 ₽",
+      maturity: "27.02.2027",
+    },
+    {
+      name: "Перспектива: Лукойл (3 мес.)",
+      sub: "Поставочный контракт с фиксированным доходом",
+      yield: "22 % год.",
+      amount: "100 000 ₽",
+      maturity: "29.11.2026",
+    },
   ];
 
   const DEMO_IDEAS = [
@@ -239,63 +332,369 @@
     { title: "Дивидендная выборка", potential: "+12 %", sub: "Потенциал за 12 месяцев" },
   ];
 
-  function renderAnalystStocks() {
-    const list = document.getElementById("analystStocksList");
-    list.innerHTML = "";
-    DEMO_STOCKS.forEach((stock) => {
-      const row = document.createElement("button");
-      row.className = "feed-stock-row";
-      row.innerHTML = `
-        <div>
-          <div class="feed-stock-name">${stock.name}</div>
-          <div class="feed-stock-ticker">${stock.ticker}</div>
-        </div>
-        <div class="feed-stock-right">
-          <div class="feed-stock-price">${stock.price}</div>
-          <div class="feed-stock-change ${stock.positive ? "positive" : "negative"}">${stock.changeAbs} · ${stock.changePct}</div>
-        </div>
-      `;
-      row.addEventListener("click", () => showToast(`Демо: карточка «${stock.name}» недоступна`));
-      list.appendChild(row);
-    });
+  const DEMO_NEWS = [
+    { title: "Выручка АФК «Система» за II квартал выросла на 10,2%, до 336,2 млрд руб., скорр. OIBDA — на 12,4%", meta: "Сегодня 20:55 · Интерфакс" },
+    { title: "Девелопер «Эталон» в I полугодии сократил чистый убыток по РСБУ на 21%", meta: "Сегодня 20:51 · Интерфакс" },
+  ];
+
+  const DEMO_DIGESTS = [
+    { title: "Дивидендные лидеры", badge: "+11" },
+    { title: "Фавориты стратегии", badge: "+7" },
+  ];
+
+  function bondRatingHTML(rating) {
+    const bars = [3, 5, 7, 9, 11];
+    return `<span class="feed-bond-rating">${bars
+      .map((h, i) => `<span style="height:${h}px" class="${i < rating ? "" : "empty"}"></span>`)
+      .join("")}</span>`;
   }
 
-  function renderPlacements() {
-    const list = document.getElementById("placementsList");
+  function renderAnalystStockRow(stock) {
+    const row = document.createElement("button");
+    row.className = "feed-stock-row";
+    row.innerHTML = `
+      ${stock.avatar}
+      <div style="flex:1;min-width:0">
+        <div class="feed-stock-name">${stock.name}</div>
+        <div class="feed-stock-ticker">${stock.ticker}</div>
+      </div>
+      <div class="feed-stock-right">
+        <div class="feed-stock-price">${stock.price}</div>
+        <div class="feed-stock-change ${stock.positive ? "positive" : "negative"}">${stock.changeAbs} · ${stock.changePct}</div>
+      </div>
+    `;
+    row.addEventListener("click", () => showToast(`Демо: карточка «${stock.name}» недоступна`));
+    return row;
+  }
+
+  function renderAnalystTab(tab) {
+    const content = document.getElementById("analystTabContent");
+    content.innerHTML = "";
+
+    if (tab === "stocks") {
+      const wrap = document.createElement("div");
+      wrap.className = "feed-analyst-columns";
+
+      const left = document.createElement("div");
+      left.className = "feed-analyst-col";
+      left.innerHTML = `<div class="feed-analyst-col-title">Топ-10 акций <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="vertical-align:-2px"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg></div>`;
+      DEMO_STOCKS.slice(0, 5).forEach((s) => left.appendChild(renderAnalystStockRow(s)));
+
+      const right = document.createElement("div");
+      right.className = "feed-analyst-col";
+      DEMO_STOCKS.slice(5, 10).forEach((s) => right.appendChild(renderAnalystStockRow(s)));
+
+      wrap.appendChild(left);
+      wrap.appendChild(right);
+      content.appendChild(wrap);
+      return;
+    }
+
+    const groups = tab === "rub" ? DEMO_BONDS_RUB : DEMO_BONDS_CNY;
+    const wrap = document.createElement("div");
+    wrap.className = "feed-analyst-columns";
+    groups.forEach((group) => {
+      const col = document.createElement("div");
+      col.className = "feed-analyst-col";
+      const title = document.createElement("div");
+      title.className = "feed-analyst-col-title";
+      title.textContent = group.title;
+      col.appendChild(title);
+      group.items.forEach((bond) => {
+        const row = document.createElement("button");
+        row.className = "feed-stock-row";
+        row.innerHTML = `
+          ${bond.avatar}
+          <div style="flex:1;min-width:0">
+            <div class="feed-stock-name">${bond.name}</div>
+            <div class="feed-stock-change positive">${bond.rate}</div>
+            ${bondRatingHTML(bond.rating)}
+          </div>
+        `;
+        row.addEventListener("click", () => showToast(`Демо: карточка «${bond.name}» недоступна`));
+        col.appendChild(row);
+      });
+      wrap.appendChild(col);
+    });
+    content.appendChild(wrap);
+  }
+
+  document.querySelectorAll("#analystTabs .feed-subtab").forEach((tabBtn) => {
+    tabBtn.addEventListener("click", () => {
+      document.querySelectorAll("#analystTabs .feed-subtab").forEach((b) => b.classList.remove("active"));
+      tabBtn.classList.add("active");
+      renderAnalystTab(tabBtn.dataset.analystTab);
+    });
+  });
+
+  function renderHCards(listId, items, className, buildInner) {
+    const list = document.getElementById(listId);
     list.innerHTML = "";
-    DEMO_PLACEMENTS.forEach((item) => {
+    items.forEach((item) => {
       const card = document.createElement("button");
-      card.className = "feed-hcard";
-      card.innerHTML = `
-        <div class="feed-hcard-kind">${item.kind}</div>
-        <div class="feed-hcard-name">${item.name}</div>
-        <div class="feed-hcard-value">${item.value}</div>
-        <div class="feed-hcard-sub">${item.sub}</div>
-      `;
+      card.className = `feed-hcard ${className}`;
+      card.innerHTML = buildInner(item);
       card.addEventListener("click", () => showToast(`Демо: карточка «${item.name}» недоступна`));
       list.appendChild(card);
     });
   }
 
+  function renderPlacements() {
+    renderHCards(
+      "placementsList",
+      DEMO_PLACEMENTS,
+      "feed-hcard--placement",
+      (item) => `
+        <div class="feed-hcard-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgb(0,122,255)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <div class="feed-hcard-kind">${item.kind}</div>
+        <div class="feed-hcard-name">${item.name}</div>
+        <div class="feed-hcard-code">${item.code}</div>
+        <div class="feed-hcard-price">${item.price}</div>
+      `
+    );
+  }
+
+  function renderFunds() {
+    renderHCards(
+      "fundsList",
+      DEMO_FUNDS,
+      "feed-hcard--fund",
+      (item) => `
+        <div class="feed-hcard-badge"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgb(0,122,255)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <div class="feed-hcard-name">${item.name}</div>
+        <div class="feed-hcard-kind">${item.kind}</div>
+        <div class="feed-hcard-pct">${item.pct}</div>
+        <div class="feed-hcard-sub">${item.sub}</div>
+      `
+    );
+  }
+
+  function renderStructBonds() {
+    renderHCards(
+      "structBondsList",
+      DEMO_STRUCT_BONDS,
+      "feed-hcard--struct",
+      (item) => `
+        <div class="feed-hcard-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgb(0,122,255)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <div class="feed-hcard-kind">${item.kind}</div>
+        <div class="feed-hcard-name">${item.name}</div>
+        <div class="feed-hcard-rate">${item.rate}</div>
+        <div class="feed-hcard-sub" style="color:rgba(255,255,255,0.75)">${item.sub}</div>
+      `
+    );
+  }
+
+  function renderStructObligations() {
+    renderHCards(
+      "structObligList",
+      DEMO_STRUCT_OBLIGATIONS,
+      "feed-hcard--struct",
+      (item) => `
+        <div class="feed-hcard-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgb(0,122,255)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <div class="feed-hcard-kind">${item.kind}</div>
+        <div class="feed-hcard-name">${item.name}</div>
+        <div class="feed-hcard-rate">${item.rate}</div>
+        <div class="feed-hcard-sub" style="color:rgba(255,255,255,0.75)">${item.sub}</div>
+      `
+    );
+  }
+
+  function renderStructProducts() {
+    renderHCards(
+      "structProductsList",
+      DEMO_STRUCT_PRODUCTS,
+      "feed-hcard--dark",
+      (item) => `
+        <div class="feed-hcard-dark-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><circle cx="12" cy="12" r="9"></circle></svg></div>
+        <div class="feed-hcard-name">${item.name}</div>
+        <div class="feed-hcard-kind">${item.sub}</div>
+        <div class="feed-hcard-dark-grid">
+          <div><div class="feed-hcard-dark-label">Доход-сть до</div><div class="feed-hcard-dark-value">${item.yield}</div></div>
+          <div><div class="feed-hcard-dark-label">Сумма от</div><div class="feed-hcard-dark-value">${item.amount}</div></div>
+          <div><div class="feed-hcard-dark-label">Погашение</div><div class="feed-hcard-dark-value">${item.maturity}</div></div>
+        </div>
+      `
+    );
+  }
+
   function renderIdeas() {
-    const list = document.getElementById("ideasList");
-    list.innerHTML = "";
-    DEMO_IDEAS.forEach((idea) => {
-      const card = document.createElement("button");
-      card.className = "feed-hcard";
-      card.innerHTML = `
+    renderHCards(
+      "ideasList",
+      DEMO_IDEAS,
+      "",
+      (idea) => `
         <div class="feed-hcard-name">${idea.title}</div>
         <div class="feed-hcard-potential">${idea.potential}</div>
         <div class="feed-hcard-sub">${idea.sub}</div>
+      `
+    );
+    document.getElementById("ideasList").querySelectorAll(".feed-hcard").forEach((card, i) => {
+      card.addEventListener("click", () => showToast(`Демо: идея «${DEMO_IDEAS[i].title}» недоступна`));
+    });
+  }
+
+  function renderNews() {
+    const list = document.getElementById("newsList");
+    list.innerHTML = "";
+    DEMO_NEWS.forEach((item) => {
+      const row = document.createElement("button");
+      row.className = "feed-news-row";
+      row.innerHTML = `
+        <div class="feed-news-title">${item.title}</div>
+        <div class="feed-news-meta">${item.meta}</div>
       `;
-      card.addEventListener("click", () => showToast(`Демо: идея «${idea.title}» недоступна`));
+      row.addEventListener("click", () => showToast("Демо: новость недоступна"));
+      list.appendChild(row);
+    });
+  }
+
+  function renderDigests() {
+    const list = document.getElementById("digestsList");
+    list.innerHTML = "";
+    DEMO_DIGESTS.forEach((item) => {
+      const card = document.createElement("button");
+      card.className = "feed-hcard feed-hcard--digest";
+      card.innerHTML = `
+        <div class="digest-icons"><span style="background:rgb(0,122,255)">Т</span><span style="background:rgb(213,29,29)">Л</span><span style="background:rgb(33,160,80)">С</span></div>
+        <div class="digest-icons-more">${item.badge}</div>
+        <div class="feed-hcard-name">${item.title}</div>
+      `;
+      card.addEventListener("click", () => showToast(`Демо: подборка «${item.title}» недоступна`));
       list.appendChild(card);
     });
   }
 
-  renderAnalystStocks();
+  renderAnalystTab("stocks");
   renderPlacements();
+  renderFunds();
+  renderStructBonds();
+  renderStructObligations();
+  renderStructProducts();
   renderIdeas();
+  renderNews();
+  renderDigests();
+
+  /* Карусель промо-баннеров */
+
+  const PROMO_SLIDES = [
+    {
+      image: "https://h2.vtb.ru/projects/mpmi/files/skins/Shortcuts/crystal_new_light.png",
+      title: "Лучший частный инвестор 2026",
+      sub: "Призы в 2 раза больше с ВТБ",
+    },
+    {
+      image: "https://headless-cms7.vtb.ru/projects/mpmi/files/store/widget/widget_3073.jpg",
+      title: "10 призов по 100 000 ₽",
+      sub: "Участвуйте в розыгрыше каждую неделю",
+    },
+  ];
+
+  function renderPromoCarousel() {
+    const track = document.getElementById("promoCarouselTrack");
+    const dots = document.getElementById("promoCarouselDots");
+    track.innerHTML = "";
+    dots.innerHTML = "";
+    PROMO_SLIDES.forEach((slide, i) => {
+      const btn = document.createElement("button");
+      btn.className = "promo-slide";
+      btn.style.backgroundImage = `linear-gradient(rgba(0,40,120,0.15), rgba(0,20,80,0.55)), url('${slide.image}')`;
+      btn.innerHTML = `
+        <div class="promo-slide-title">${slide.title}</div>
+        <div class="promo-slide-sub">${slide.sub}</div>
+      `;
+      btn.addEventListener("click", () => showToast("Демо: действие недоступно"));
+      track.appendChild(btn);
+
+      const dot = document.createElement("span");
+      dot.className = "promo-carousel-dot" + (i === 0 ? " active" : "");
+      dots.appendChild(dot);
+    });
+  }
+
+  renderPromoCarousel();
+
+  document.getElementById("promoCarouselTrack").addEventListener("scroll", (e) => {
+    const track = e.target;
+    const index = Math.round(track.scrollLeft / track.clientWidth);
+    document.querySelectorAll(".promo-carousel-dot").forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
+    });
+  });
+
+  /* Сетка быстрых плиток */
+
+  const TILE_ICONS = {
+    percent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>',
+    diamond: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"></path><path d="M2 9h20M9 3l-3 6 6 12 6-12-3-6"></path></svg>',
+    book: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V4H6.5A2.5 2.5 0 0 0 4 6.5v13z"></path><line x1="4" y1="17" x2="20" y2="17"></line></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="8 12 11 15 16 9"></polyline></svg>',
+    person: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"></path></svg>',
+  };
+
+  const TILE_ITEMS = [
+    { label: "Розыгрыш миллиона рублей", bg: "linear-gradient(135deg, rgb(180,150,240), rgb(120,90,210))", image: "https://h2.vtb.ru/projects/mpmi/files/skins/Shortcuts/crystal_new_light.png" },
+    { label: "Акция: кредит под активы", bg: "linear-gradient(135deg, rgb(100,170,255), rgb(30,120,240))", image: "https://h2.vtb.ru/projects/mpmi/files/skins/Shortcuts/star_light.png" },
+    { label: "Открыть новый субсчет", image: "https://headless-cms7.vtb.ru/projects/mpmi/files/skins/Shortcuts/portfel_light.png" },
+    { label: "Маржинальная торговля", icon: "percent" },
+    { label: "ИИС", icon: "diamond" },
+    { label: "ФинКод: всё об инвестициях", icon: "book" },
+    { label: "Голосования акционеров", icon: "check" },
+    { label: "Индивидуальный подход с Advisory", icon: "person" },
+  ];
+
+  function renderTileGrid() {
+    const grid = document.getElementById("tileGrid");
+    grid.innerHTML = "";
+    TILE_ITEMS.forEach((tile) => {
+      const btn = document.createElement("button");
+      btn.className = "tile-card" + (tile.bg ? " tile-card--gradient" : "");
+      if (tile.bg) btn.style.background = tile.bg;
+      const iconHTML = tile.image
+        ? `<img class="tile-card-icon" src="${tile.image}" alt="" draggable="false" />`
+        : tile.icon
+          ? `<span class="tile-card-icon" style="color:${tile.bg ? "#fff" : "var(--text-tertiary)"}">${TILE_ICONS[tile.icon]}</span>`
+          : "";
+      btn.innerHTML = `<div class="tile-card-label">${tile.label}</div>${iconHTML}`;
+      btn.addEventListener("click", () => showToast("Демо: действие недоступно"));
+      grid.appendChild(btn);
+    });
+  }
+
+  renderTileGrid();
+
+  /* Инфо-шторка (Новые размещения / Фонды / Инвестидеи / Индекс ВТБ) */
+
+  const INFO_TEXTS = {
+    placements: {
+      title: "Новые размещения",
+      text: "В блоке отображаются новые выпуски облигаций и других активов. Также здесь можно найти акции компаний, которые выходят на IPO или SPO — размещают акции впервые или выпускают в обращение дополнительные бумаги.\n\nРазмещения — это первичный рынок, все ценные бумаги вы покупаете напрямую у компании или государства.\n\nЧтобы участвовать в размещении, зайдите на карточку актива и нажмите кнопку «Участвовать». Если размещение еще не началось, вы можете подписаться на обновления.",
+    },
+    funds: {
+      title: "Фонды ВТБ",
+      text: "Фонд — это готовый набор акций, облигаций и других активов. Покупая долю в фонде, вы инвестируете сразу в десятки или сотни активов. Это снижает зависимость портфеля от каждой конкретной бумаги и существенно снижает риск.\n\nЕсли вы владеете долей от 3 лет, то после ее продажи или погашения, в том числе частичного, можете получить налоговый вычет.",
+    },
+    ideas: {
+      title: "Инвестидеи на короткий срок",
+      text: "В блоке отображаются инвестидеи на срок от 1 до 6 месяцев. В начале — самые актуальные.\n\nИнвестидея — это мнение наших аналитиков, что в ближайшие несколько месяцев определенная акция или облигация может подорожать из-за краткосрочных причин. Например, если компания публикует хороший финансовый отчет, объявляет дивиденды или покупает конкурента.\n\nПотенциальная доходность определяется так: мы сравниваем текущую цену с ценой, которую ожидают аналитики через 1–6 месяцев.\n\nВажно: инвестидеи — это не индивидуальные рекомендации, а помощь в выборе. Решение о том, покупать или продавать, принимаете только вы сами.",
+    },
+    mood: {
+      title: "Как рассчитывается индекс ВТБ",
+      text: "Чтобы определить настроение инвесторов — клиентов ВТБ, сумма всех покупок акций делится на общий объем торгов акциями среди сделок клиентов ВТБ и умножается на 100%. Полученный процент и есть индекс ВТБ.\n\nПоказатель от 0% до 49% означает, что большинство инвесторов настроены негативно и продают акции.\n\nОт 49% до 51% — нейтральное настроение рынка, при котором покупки и продажи акций примерно равны.\n\nПри показателе от 51% до 100% покупок акций больше продаж — это означает, что большинство инвесторов настроены позитивно.",
+    },
+  };
+
+  document.querySelectorAll("[data-info]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const info = INFO_TEXTS[btn.dataset.info];
+      if (!info) return;
+      document.getElementById("infoSheetTitle").textContent = info.title;
+      document.getElementById("infoSheetText").textContent = info.text;
+      openScreen(infoSheet);
+    });
+  });
+
+  document.getElementById("infoSheetClose").addEventListener("click", closeTop);
+  document.getElementById("infoSheetOk").addEventListener("click", closeTop);
 
   /* Поиск инструментов */
 

@@ -144,10 +144,17 @@
       </button>
 
       <div class="feed" id="feed">
-        <button class="feed-card feed-promo" data-toast="1">
-          <div class="feed-promo-title">Инвестируйте с умом</div>
-          <div class="feed-promo-sub">Готовые стратегии, аналитика и подборки инструментов — в одном месте</div>
-        </button>
+        <!-- Карусель промо-баннеров -->
+        <div class="promo-carousel" id="promoCarousel">
+          <div class="promo-carousel-track" id="promoCarouselTrack"></div>
+          <button class="promo-carousel-close" data-toast="1" aria-label="Закрыть">
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="2" x2="14" y2="14"></line><line x1="14" y1="2" x2="2" y2="14"></line></svg>
+          </button>
+          <div class="promo-carousel-dots" id="promoCarouselDots"></div>
+        </div>
+
+        <!-- Сетка быстрых плиток -->
+        <div class="tile-grid" id="tileGrid"></div>
 
         <button class="feed-card" data-toast="1">
           <div class="feed-card-title">Доход и надёжность</div>
@@ -166,10 +173,66 @@
           <div class="feed-card-sub">Подборка: Лукойл, Сбербанк, ОФЗ 26238 — разбор аналитиков ВТБ Мои Инвестиции</div>
         </button>
 
-        <button class="feed-card" data-toast="1">
-          <div class="feed-card-title">Структурные продукты</div>
-          <div class="feed-card-sub">Готовые стратегии с защитой капитала и потенциальной доходностью выше вклада</div>
-        </button>
+        <div class="feed-card feed-section">
+          <div class="feed-section-head">
+            <div class="feed-card-title">Новые размещения</div>
+            <button class="feed-info-btn" data-info="placements" aria-label="Подробнее">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg>
+            </button>
+          </div>
+          <div class="feed-hlist" id="placementsList"></div>
+        </div>
+
+        <div class="feed-card feed-section">
+          <div class="feed-section-head">
+            <div class="feed-card-title">Фонды</div>
+            <button class="feed-info-btn" data-info="funds" aria-label="Подробнее">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg>
+            </button>
+          </div>
+          <div class="feed-hlist" id="fundsList"></div>
+        </div>
+
+        <div class="feed-card feed-section">
+          <div class="feed-section-head">
+            <div class="feed-card-title">Облигации со структурным доходом</div>
+            <button class="feed-info-btn" data-toast="1" aria-label="Подробнее">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg>
+            </button>
+          </div>
+          <div class="feed-hlist" id="structBondsList"></div>
+        </div>
+
+        <div class="feed-card feed-section">
+          <div class="feed-section-head">
+            <div class="feed-card-title">Структурные облигации</div>
+            <button class="feed-info-btn" data-toast="1" aria-label="Подробнее">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg>
+            </button>
+          </div>
+          <div class="feed-hlist" id="structObligList"></div>
+        </div>
+
+        <div class="feed-card feed-section">
+          <div class="feed-section-head">
+            <div class="feed-card-title">Структурные продукты</div>
+            <button class="feed-link-btn" data-toast="1">Все</button>
+          </div>
+          <div class="feed-hlist" id="structProductsList"></div>
+        </div>
+
+        <div class="feed-card feed-section">
+          <div class="feed-section-head">
+            <div class="feed-card-title">Топ от аналитиков</div>
+            <button class="feed-link-btn" data-toast="1">Подобрать</button>
+          </div>
+          <div class="feed-subtabs" id="analystTabs">
+            <button class="feed-subtab active" data-analyst-tab="stocks">Акции</button>
+            <button class="feed-subtab" data-analyst-tab="rub">Облигации • RUB</button>
+            <button class="feed-subtab" data-analyst-tab="cny">Облигации • CNY</button>
+          </div>
+          <div id="analystTabContent"></div>
+        </div>
 
         <button class="feed-card" data-toast="1">
           <div class="feed-card-title">Портфель на миллион</div>
@@ -181,31 +244,61 @@
           <div class="feed-card-sub">Настройте автоследование и не пропускайте рыночные возможности</div>
         </button>
 
-        <div class="feed-chips">
-          <button class="feed-chip" data-toast="1">Открыть новый субсчет</button>
-          <button class="feed-chip" data-toast="1">Маржинальная торговля</button>
-          <button class="feed-chip" data-toast="1">ИИС</button>
-        </div>
-
         <div class="feed-card feed-section">
-          <div class="feed-card-title">Новые размещения</div>
-          <div class="feed-hlist" id="placementsList"></div>
-        </div>
-
-        <div class="feed-card feed-section">
-          <div class="feed-card-title">Топ от аналитиков</div>
-          <div class="feed-stocklist" id="analystStocksList"></div>
-          <button class="feed-pick-btn" data-toast="1">Подобрать</button>
-        </div>
-
-        <div class="feed-card feed-section">
-          <div class="feed-card-title">Инвестиционные идеи</div>
+          <div class="feed-section-head">
+            <div class="feed-card-title">Инвестидеи на короткий срок</div>
+            <button class="feed-info-btn" data-info="ideas" aria-label="Подробнее">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg>
+            </button>
+          </div>
           <div class="feed-hlist" id="ideasList"></div>
+        </div>
+
+        <div class="feed-card feed-section">
+          <div class="feed-section-head">
+            <div class="feed-card-title">Аналитика</div>
+            <button class="feed-link-btn" data-toast="1">Подробнее</button>
+          </div>
+          <button class="feed-analytics-card" data-toast="1">
+            <div class="feed-analytics-image"></div>
+            <div class="feed-analytics-title">Курс CNY/RUB поднялся до максимального с февраля уровня</div>
+            <div class="feed-analytics-excerpt">«Фикс Прайс» опубликовал операционные и финансовые результаты за 2-ой квартал. Итого: …</div>
+            <div class="feed-analytics-meta">Сегодня 19:54 · Отдел аналитики</div>
+          </button>
+        </div>
+
+        <div class="feed-card feed-section">
+          <div class="feed-section-head">
+            <div class="feed-card-title">Новости</div>
+            <button class="feed-link-btn" data-toast="1">Все новости</button>
+          </div>
+          <div class="feed-ai-summary">
+            <div class="feed-ai-summary-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19.4 9l-5.6 1.8L12 16.4l-1.8-5.6L4.6 9l5.6-1.8z"></path></svg>
+              AI-саммари: картина дня
+            </div>
+            <ul class="feed-ai-summary-list">
+              <li>Санкции США против Ирана давят на нефтяной рынок</li>
+              <li>Фондовые индексы США завершили торги 27 августа в минусе</li>
+              <li>Промпроизводство в РФ в июле выросло, но динамика роста замедлилась</li>
+              <li>Whoosh скорректировал прогноз выручки на 2026 год ниже 14 млрд рублей</li>
+            </ul>
+          </div>
+          <div id="newsList"></div>
+        </div>
+
+        <div class="feed-card feed-section">
+          <div class="feed-card-title">Подборки недели</div>
+          <div class="feed-hlist" id="digestsList"></div>
         </div>
 
         <div class="feed-card feed-mood">
           <div class="feed-mood-top">
-            <div class="feed-card-title">Инвесторы <span class="feed-mood-positive">позитивны</span></div>
+            <div class="feed-card-title">Инвесторы <span class="feed-mood-positive">позитивны</span>
+              <button class="feed-info-btn feed-info-btn--inline" data-info="mood" aria-label="Подробнее">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg>
+              </button>
+            </div>
             <span class="feed-mood-period">Месяц
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16c-.15 0-.28-.03-.41-.07a1.06 1.06 0 0 1-.35-.23l-4.95-4.91c-.2-.2-.29-.45-.29-.75 0-.31.09-.56.29-.75.2-.2.45-.29.75-.29.31 0 .56.09.76.29l4.2 4.17 4.19-4.17c.2-.2.45-.29.76-.29.3 0 .55.09.75.29.2.19.3.44.3.75 0 .3-.1.55-.3.75l-4.95 4.91c-.11.11-.23.18-.35.23-.13.04-.26.07-.4.07Z"></path></svg>
             </span>
@@ -219,6 +312,21 @@
             <span class="feed-mood-bar-buy" style="width: 58.4%"></span>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Инфо-шторка -->
+    <div class="sheet sheet--level2" id="infoSheet" role="dialog" aria-modal="true" aria-label="Информация">
+      <div class="sheet-grabber"></div>
+      <div class="picker-header">
+        <div class="picker-title" id="infoSheetTitle"></div>
+        <button class="topup-close-btn" id="infoSheetClose" aria-label="Закрыть">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="#B2B2B7"><path fill-rule="nonzero" d="M12 13.4L14.9 16.29C15.08 16.48 15.31 16.57 15.6 16.57C15.88 16.57 16.11 16.48 16.29 16.29C16.48 16.11 16.57 15.88 16.57 15.6C16.57 15.31 16.48 15.08 16.29 14.9L13.4 12L16.29 9.1C16.48 8.91 16.57 8.68 16.57 8.39C16.57 8.11 16.48 7.88 16.29 7.7C16.11 7.51 15.88 7.42 15.6 7.42C15.31 7.42 15.08 7.51 14.9 7.7L12 10.6L9.1 7.7C8.91 7.51 8.68 7.42 8.39 7.42C8.11 7.42 7.88 7.51 7.7 7.7C7.51 7.88 7.42 8.11 7.42 8.39C7.42 8.68 7.51 8.91 7.7 9.1L10.6 12L7.7 14.9C7.51 15.08 7.42 15.31 7.42 15.6C7.42 15.88 7.51 16.11 7.7 16.29C7.88 16.48 8.11 16.57 8.39 16.57C8.68 16.57 8.91 16.48 9.1 16.29L12 13.4ZM12 22C10.61 22 9.31 21.73 8.1 21.21C6.88 20.68 5.82 19.97 4.92 19.07C4.02 18.17 3.31 17.11 2.78 15.9C2.26 14.68 2 13.38 2 12C2 10.61 2.26 9.31 2.78 8.1C3.31 6.88 4.02 5.82 4.92 4.92C5.82 4.02 6.88 3.31 8.1 2.78C9.31 2.26 10.61 2 12 2C13.38 2 14.68 2.26 15.9 2.78C17.11 3.31 18.17 4.02 19.07 4.92C19.97 5.82 20.68 6.88 21.21 8.1C21.73 9.31 22 10.61 22 12C22 13.38 21.73 14.68 21.21 15.9C20.68 17.11 19.97 18.17 19.07 19.07C18.17 19.97 17.11 20.68 15.9 21.21C14.68 21.73 13.38 22 12 22Z"></path></svg>
+        </button>
+      </div>
+      <div class="sheet-body">
+        <div class="info-sheet-text" id="infoSheetText"></div>
+        <button class="refill-submit-btn active" id="infoSheetOk">Понятно</button>
       </div>
     </div>
 
