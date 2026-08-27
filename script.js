@@ -402,12 +402,16 @@
     const groups = tab === "rub" ? DEMO_BONDS_RUB : DEMO_BONDS_CNY;
     const wrap = document.createElement("div");
     wrap.className = "feed-analyst-columns feed-analyst-columns--scroll";
-    groups.forEach((group) => {
+    groups.forEach((group, i) => {
       const col = document.createElement("div");
       col.className = "feed-analyst-col feed-analyst-col--fixed";
       const title = document.createElement("div");
       title.className = "feed-analyst-col-title";
-      title.textContent = group.title;
+      const infoIconHTML =
+        i === 0
+          ? `<button class="feed-info-btn feed-info-btn--inline" data-info="topbonds" aria-label="Подробнее"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg></button>`
+          : "";
+      title.innerHTML = `<span>${group.title}${infoIconHTML}</span><span class="feed-analyst-col-dot${i === 0 ? " active" : ""}"></span>`;
       col.appendChild(title);
       group.items.forEach((bond) => {
         const row = document.createElement("button");
@@ -416,9 +420,9 @@
           ${bond.avatar}
           <div class="feed-stock-info">
             <div class="feed-stock-name">${bond.name}</div>
-            <div class="feed-stock-change positive">${bond.rate}</div>
-            ${bondRatingHTML(bond.rating)}
+            <div class="feed-bond-rate">${bond.rate}</div>
           </div>
+          <div class="feed-stock-right">${bondRatingHTML(bond.rating)}</div>
         `;
         row.addEventListener("click", () => showToast(`Демо: карточка «${bond.name}» недоступна`));
         col.appendChild(row);
@@ -665,6 +669,10 @@
     top10stocks: {
       title: "Топ-10 акций",
       text: "Подборка топ-10 — это самые перспективные акции. По мнению наших аналитиков, они могут дорожать быстрее индексов в ближайшие 6-12 месяцев. Это может произойти, например, если компания изменила стратегию или повысился спрос на ее продукты.\n\nЧтобы выбрать акции, аналитики оценивают состояние экономики, секторов, отдельных компаний и изменения на рынках.\n\nВ начале блока отображаются бумаги, которые попали в подборку последними.\n\nОбычно подборки обновляются раз в месяц. Если компания замедлила рост и ценные бумаги исчерпали свой потенциал, аналитики заменяют акции на более перспективные.\n\nВажно: подборки акций — это не индивидуальные рекомендации к покупке, а помощь в выборе. Решение о том, покупать или нет, принимаете только вы сами.",
+    },
+    topbonds: {
+      title: "Топ облигаций",
+      text: "В блоке отображаются подборки облигаций с хорошим соотношением доходности и риска. В начале — самые надежные. Если в карточке компании есть рейтинг надежности, он появится в блоке напротив актива.\n\nЧтобы подобрать облигации, аналитики используют внутреннюю оценку риска компании или государства. Специалисты выбирают бумаги с максимальной доходностью под разные уровни риска.\n\nВажно: подборки облигаций — это не индивидуальные рекомендации к покупке, а помощь в выборе. Решение о том, покупать или нет, принимаете только вы сами.",
     },
     placements: {
       title: "Новые размещения",

@@ -2162,9 +2162,35 @@ body.sheet-open .app {
 }
 
 .feed-analyst-col-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 13px;
   font-weight: 500;
   color: var(--text-secondary);
+}
+
+.feed-analyst-col-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-tertiary);
+  flex: 0 0 auto;
+}
+
+.feed-analyst-col-dot.active {
+  background: var(--text-secondary);
+}
+
+.feed-bond-rate {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.feed-analyst-col--fixed .feed-stock-avatar {
+  width: 36px;
+  height: 36px;
 }
 
 .feed-stock-avatar {
@@ -2202,8 +2228,7 @@ body.sheet-open .app {
   display: inline-flex;
   align-items: flex-end;
   gap: 1.5px;
-  margin-top: 4px;
-  height: 8px;
+  height: 11px;
 }
 
 .feed-bond-rating span {
