@@ -223,17 +223,21 @@
     return `<span class="feed-stock-avatar" style="background:${bg}">${letters}</span>`;
   }
 
+  function stockIconHTML(ticker) {
+    return `<img class="feed-stock-avatar" src="https://headless-cms7.vtb.ru/projects/mpmi/files/icons/${ticker}.png" alt="" draggable="false" style="object-fit:cover" />`;
+  }
+
   const DEMO_STOCKS = [
-    { name: "Лукойл", ticker: "LKOH", price: "4 305,5 ₽", changeAbs: "143,5 ₽", changePct: "3,4 %", positive: true, avatar: stockAvatarHTML("ЛК", "rgb(213,29,29)") },
-    { name: "ДОМ.РФ", ticker: "DOMRF", price: "2 152,4 ₽", changeAbs: "12,6 ₽", changePct: "0,6 %", positive: true, avatar: stockAvatarHTML("ДР", "rgb(19,66,53)") },
-    { name: "Сургутнефтегаз-п", ticker: "SNGSP", price: "42,5 ₽", changeAbs: "1 ₽", changePct: "2,3 %", positive: true, avatar: stockAvatarHTML("СФ", "rgb(63,74,92)") },
-    { name: "Мать и Дитя", ticker: "MDMG", price: "1 304 ₽", changeAbs: "10,8 ₽", changePct: "0,8 %", positive: true, avatar: stockAvatarHTML("МД", "rgb(224,120,60)") },
-    { name: "Новатэк", ticker: "NVTK", price: "934,7 ₽", changeAbs: "13,2 ₽", changePct: "1,4 %", positive: true, avatar: stockAvatarHTML("НВ", "rgb(0,122,255)") },
-    { name: "Московская биржа", ticker: "MOEX", price: "152 ₽", changeAbs: "0,3 ₽", changePct: "0,2 %", positive: true, avatar: stockAvatarHTML("МБ", "rgb(213,29,29)") },
-    { name: "Совкомфлот", ticker: "FLOT", price: "76,5 ₽", changeAbs: "3,4 ₽", changePct: "4,7 %", positive: true, avatar: stockAvatarHTML("СК", "rgb(0,90,180)") },
-    { name: "Газпром", ticker: "GAZP", price: "85 ₽", changeAbs: "2,7 ₽", changePct: "3,3 %", positive: true, avatar: stockAvatarHTML("ГП", "rgb(0,132,110)") },
-    { name: "Сбербанк", ticker: "SBER", price: "270,2 ₽", changeAbs: "2,9 ₽", changePct: "1,1 %", positive: true, avatar: stockAvatarHTML("СБ", "rgb(33,160,80)") },
-    { name: "Яндекс", ticker: "YDEX", price: "3 478 ₽", changeAbs: "22 ₽", changePct: "0,6 %", positive: true, avatar: stockAvatarHTML("Я", "rgb(213,29,29)") },
+    { name: "Лукойл", ticker: "LKOH", price: "4 309,5 ₽", changeAbs: "147,5 ₽", changePct: "3,5 %", positive: true, avatar: stockIconHTML("LKOH") },
+    { name: "ДОМ.РФ", ticker: "DOMRF", price: "2 154,4 ₽", changeAbs: "14,6 ₽", changePct: "0,7 %", positive: true, avatar: stockIconHTML("DOMRF") },
+    { name: "Сургутнефтегаз-п", ticker: "SNGSP", price: "42,5 ₽", changeAbs: "1 ₽", changePct: "2,3 %", positive: true, avatar: stockIconHTML("SNGSP") },
+    { name: "Мать и Дитя", ticker: "MDMG", price: "1 303,3 ₽", changeAbs: "10,1 ₽", changePct: "0,8 %", positive: true, avatar: stockIconHTML("MDMG") },
+    { name: "Новатэк", ticker: "NVTK", price: "932,6 ₽", changeAbs: "11,1 ₽", changePct: "1,2 %", positive: true, avatar: stockIconHTML("NVTK") },
+    { name: "Московская биржа", ticker: "MOEX", price: "152,2 ₽", changeAbs: "0,5 ₽", changePct: "0,3 %", positive: true, avatar: stockIconHTML("MOEX") },
+    { name: "Совкомфлот", ticker: "FLOT", price: "76,7 ₽", changeAbs: "3,6 ₽", changePct: "5 %", positive: true, avatar: stockIconHTML("FLOT") },
+    { name: "Газпром", ticker: "GAZP", price: "84,9 ₽", changeAbs: "2,6 ₽", changePct: "3,1 %", positive: true, avatar: stockIconHTML("GAZP") },
+    { name: "Сбербанк", ticker: "SBER", price: "270 ₽", changeAbs: "2,7 ₽", changePct: "1 %", positive: true, avatar: stockIconHTML("SBER") },
+    { name: "Яндекс", ticker: "YDEX", price: "3 484,5 ₽", changeAbs: "28,5 ₽", changePct: "0,8 %", positive: true, avatar: stockIconHTML("YDEX") },
   ];
 
   const DEMO_BONDS_RUB = [
