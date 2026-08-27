@@ -386,7 +386,7 @@
 
       const left = document.createElement("div");
       left.className = "feed-analyst-col";
-      left.innerHTML = `<div class="feed-analyst-col-title">Топ-10 акций <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="vertical-align:-2px"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg></div>`;
+      left.innerHTML = `<div class="feed-analyst-col-title">Топ-10 акций <button class="feed-info-btn feed-info-btn--inline" data-info="top10stocks" aria-label="Подробнее"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg></button></div>`;
       DEMO_STOCKS.slice(0, 5).forEach((s) => left.appendChild(renderAnalystStockRow(s)));
 
       const right = document.createElement("div");
@@ -662,6 +662,10 @@
   /* Инфо-шторка (Новые размещения / Фонды / Инвестидеи / Индекс ВТБ) */
 
   const INFO_TEXTS = {
+    top10stocks: {
+      title: "Топ-10 акций",
+      text: "Подборка топ-10 — это самые перспективные акции. По мнению наших аналитиков, они могут дорожать быстрее индексов в ближайшие 6-12 месяцев. Это может произойти, например, если компания изменила стратегию или повысился спрос на ее продукты.\n\nЧтобы выбрать акции, аналитики оценивают состояние экономики, секторов, отдельных компаний и изменения на рынках.\n\nВ начале блока отображаются бумаги, которые попали в подборку последними.\n\nОбычно подборки обновляются раз в месяц. Если компания замедлила рост и ценные бумаги исчерпали свой потенциал, аналитики заменяют акции на более перспективные.\n\nВажно: подборки акций — это не индивидуальные рекомендации к покупке, а помощь в выборе. Решение о том, покупать или нет, принимаете только вы сами.",
+    },
     placements: {
       title: "Новые размещения",
       text: "В блоке отображаются новые выпуски облигаций и других активов. Также здесь можно найти акции компаний, которые выходят на IPO или SPO — размещают акции впервые или выпускают в обращение дополнительные бумаги.\n\nРазмещения — это первичный рынок, все ценные бумаги вы покупаете напрямую у компании или государства.\n\nЧтобы участвовать в размещении, зайдите на карточку актива и нажмите кнопку «Участвовать». Если размещение еще не началось, вы можете подписаться на обновления.",
@@ -680,14 +684,14 @@
     },
   };
 
-  document.querySelectorAll("[data-info]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const info = INFO_TEXTS[btn.dataset.info];
-      if (!info) return;
-      document.getElementById("infoSheetTitle").textContent = info.title;
-      document.getElementById("infoSheetText").textContent = info.text;
-      openScreen(infoSheet);
-    });
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-info]");
+    if (!btn) return;
+    const info = INFO_TEXTS[btn.dataset.info];
+    if (!info) return;
+    document.getElementById("infoSheetTitle").textContent = info.title;
+    document.getElementById("infoSheetText").textContent = info.text;
+    openScreen(infoSheet);
   });
 
   document.getElementById("infoSheetClose").addEventListener("click", closeTop);
