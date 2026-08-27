@@ -550,6 +550,134 @@ body.sheet-open .app {
   background-size: cover;
 }
 
+/* Пополнение счета: header with back + title + close */
+.topup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 4px;
+}
+
+.topup-back {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  cursor: pointer;
+  flex: 0 0 auto;
+}
+
+.topup-back:hover {
+  background: var(--neutral-bg);
+}
+
+.topup-title {
+  flex: 1;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.topup-header .sheet-close {
+  position: static;
+  flex: 0 0 auto;
+}
+
+/* Own VTB cards row */
+.vtb-cards {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 10px 0 6px;
+  scrollbar-width: none;
+}
+
+.vtb-cards::-webkit-scrollbar {
+  display: none;
+}
+
+.vtb-card {
+  flex: 0 0 auto;
+  width: 108px;
+  height: 88px;
+  border-radius: var(--radius-md);
+  border: none;
+  background-image: linear-gradient(141deg, rgb(102, 175, 255), rgb(0, 122, 255));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.vtb-card-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vtb-card-number {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+/* Bank pills (horizontal, icon + name inline) */
+.bank-pills {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 0 6px;
+  scrollbar-width: none;
+}
+
+.bank-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.bank-pill {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 8px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  cursor: pointer;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.bank-pill-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.bank-pill-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
 /* Bank chips (Пополнить screen) */
 .bank-chips {
   display: flex;

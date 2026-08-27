@@ -45,6 +45,7 @@
 
   document.getElementById("row-topup").addEventListener("click", () => openScreen(topupSheet));
   document.getElementById("topupClose").addEventListener("click", closeTop);
+  document.getElementById("topupBack").addEventListener("click", closeTop);
 
   document.getElementById("row-topup-requisites").addEventListener("click", () => openScreen(requisitesSheet));
   document.getElementById("requisitesClose").addEventListener("click", closeTop);
@@ -53,7 +54,17 @@
     showToast("Демо: счёт банка не подключён");
   });
 
-  document.querySelectorAll(".bank-chip").forEach((chip) => {
+  document.getElementById("row-topup-other-bank").addEventListener("click", () => {
+    showToast("Демо: действие недоступно");
+  });
+
+  document.querySelectorAll(".vtb-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      showToast("Демо: счёт банка не подключён");
+    });
+  });
+
+  document.querySelectorAll(".bank-pill").forEach((chip) => {
     chip.addEventListener("click", () => {
       showToast(`Пополнение через ${chip.dataset.bank} недоступно в симуляторе`);
     });
