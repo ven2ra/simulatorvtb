@@ -1191,39 +1191,37 @@ body.sheet-open .app {
   padding: 4px 0 12px;
 }
 
-.filter-chips {
+.filter-list {
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 
-.filter-chip {
+.filter-row {
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  border-radius: 100px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  color: var(--text-primary);
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 500;
+  justify-content: space-between;
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 14px 0;
   cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text-primary);
+  font-size: 16px;
+  border-bottom: 1px solid var(--border);
 }
 
-.filter-chip.selected {
-  background: rgb(24, 25, 28);
-  color: #fff;
-  border-color: rgb(24, 25, 28);
+.filter-row:last-child {
+  border-bottom: none;
 }
 
-.filter-chip-remove {
-  display: none;
-  color: rgb(117, 118, 127);
-}
-
-.filter-chip.selected .filter-chip-remove {
+.filter-row-check {
   display: flex;
+  visibility: hidden;
+}
+
+.filter-row.selected .filter-row-check {
+  visibility: visible;
 }
 

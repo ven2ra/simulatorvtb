@@ -479,11 +479,17 @@
     </div>
     <div class="sheet-body">
       <div class="filter-section-title">Валюта</div>
-      <div class="filter-chips" id="filterChips">
-        <button class="filter-chip" data-currency="RUB">Рубль</button>
-        <button class="filter-chip" data-currency="CNY">Юань</button>
+      <div class="filter-list" id="filterList">
+        <button class="filter-row" data-currency="RUB">
+          <span class="filter-row-label">Рубль</span>
+          <span class="filter-row-check"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12.5 10 17.5L19 7.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+        </button>
+        <button class="filter-row" data-currency="CNY">
+          <span class="filter-row-label">Юань</span>
+          <span class="filter-row-check"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12.5 10 17.5L19 7.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
+        </button>
       </div>
-      <button class="refill-submit-btn" id="filterApplyBtn" disabled>Применить</button>
+      <button class="refill-submit-btn active" id="filterApplyBtn">Применить</button>
     </div>
   </div>
 
