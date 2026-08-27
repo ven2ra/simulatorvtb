@@ -1041,14 +1041,19 @@ body.sheet-open .app {
   height: 36px;
   border-radius: 10px;
   border: none;
-  background: rgb(24, 25, 28);
+  background: var(--neutral-bg);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: rgb(117, 118, 127);
   cursor: pointer;
   flex: 0 0 auto;
-  transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.picker-filter-btn.active {
+  background: rgb(24, 25, 28);
+  color: #fff;
 }
 
 .picker-active-filter-chip {

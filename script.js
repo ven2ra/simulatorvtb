@@ -131,7 +131,7 @@
     { id: "zero-cny", name: "Счет в юанях", number: "0001", balance: 0, currency: "CNY", zero: true },
   ];
   let selectedSourceId = "master";
-  let appliedCurrencyFilter = null; // null = show all currencies
+  let appliedCurrencyFilter = new Set(["RUB"]); // default filter: Ruble only
   let filterSelection = new Set();
   let zeroSectionOpen = false;
 
@@ -407,11 +407,28 @@
     closeTop();
   }
 
+  const DEFAULT_CURRENCY_FILTER = "RUB";
+
+  function isDefaultCurrencyFilter() {
+    return (
+      appliedCurrencyFilter &&
+      appliedCurrencyFilter.size === 1 &&
+      appliedCurrencyFilter.has(DEFAULT_CURRENCY_FILTER)
+    );
+  }
+
+  function updateFilterButtonState() {
+    const isDefault = isDefaultCurrencyFilter();
+    document.getElementById("filterOpenBtn").classList.toggle("active", !isDefault);
+    document.getElementById("filterDot").hidden = isDefault;
+  }
+
   function renderPickerHeaderChip() {
     const actions = document.getElementById("pickerHeaderActions");
     const existing = document.getElementById("pickerActiveFilterChip");
     if (existing) existing.remove();
-    if (!appliedCurrencyFilter || appliedCurrencyFilter.size !== 1) return;
+    updateFilterButtonState();
+    if (!appliedCurrencyFilter || appliedCurrencyFilter.size !== 1 || isDefaultCurrencyFilter()) return;
     const currency = Array.from(appliedCurrencyFilter)[0];
     const label = currency === "RUB" ? "Рубль" : "Юань";
     const chip = document.createElement("button");
@@ -419,8 +436,7 @@
     chip.id = "pickerActiveFilterChip";
     chip.innerHTML = `${label}<svg width="16" height="16" viewBox="0 0 16 16" fill="#75767F"><path fill="#75767F" d="m7.99 8.99-3.47 3.48c-.13.13-.3.19-.5.19s-.37-.06-.5-.19a.678.678 0 0 1-.19-.5c0-.2.06-.37.19-.5L7 8 3.52 4.52a.678.678 0 0 1-.19-.5c0-.2.06-.37.19-.5s.3-.19.5-.19.37.06.5.19L7.99 7l3.48-3.48c.13-.13.3-.19.5-.19s.37.06.5.19.19.3.19.5-.06.37-.19.5L8.99 8l3.48 3.47c.13.13.19.3.19.5s-.06.37-.19.5-.3.19-.5.19-.37-.06-.5-.19L7.99 8.99Z"></path></svg>`;
     chip.addEventListener("click", () => {
-      appliedCurrencyFilter = null;
-      document.getElementById("filterDot").hidden = true;
+      appliedCurrencyFilter = new Set([DEFAULT_CURRENCY_FILTER]);
       zeroSectionOpen = false;
       renderBankPicker();
       renderPickerHeaderChip();
@@ -472,7 +488,6 @@
   document.getElementById("filterApplyBtn").addEventListener("click", () => {
     if (filterSelection.size === 0) return;
     appliedCurrencyFilter = new Set(filterSelection);
-    document.getElementById("filterDot").hidden = appliedCurrencyFilter.size === 2;
 
     const stillVisible =
       selectedSourceId && appliedCurrencyFilter.has(getSourceById(selectedSourceId)?.currency);
