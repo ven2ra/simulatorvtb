@@ -156,7 +156,7 @@
         <!-- Сетка быстрых плиток -->
         <div class="tile-grid" id="tileGrid"></div>
 
-        <div class="feed-card feed-section">
+        <div class="feed-card feed-section feed-section--flat">
           <div class="feed-section-head">
             <div class="feed-card-title">Новые размещения</div>
             <button class="feed-info-btn" data-info="placements" aria-label="Подробнее">
@@ -164,49 +164,6 @@
             </button>
           </div>
           <div class="feed-hlist" id="placementsList"></div>
-        </div>
-
-        <button class="feed-card" data-toast="1">
-          <div class="feed-card-title">Что купить на этой неделе</div>
-          <div class="feed-card-sub">Подборка: Лукойл, Сбербанк, ОФЗ 26238 — разбор аналитиков ВТБ Мои Инвестиции</div>
-        </button>
-
-        <div class="feed-card feed-section">
-          <div class="feed-section-head">
-            <div class="feed-card-title">Фонды</div>
-            <button class="feed-info-btn" data-info="funds" aria-label="Подробнее">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg>
-            </button>
-          </div>
-          <div class="feed-hlist" id="fundsList"></div>
-        </div>
-
-        <div class="feed-card feed-section">
-          <div class="feed-section-head">
-            <div class="feed-card-title">Облигации со структурным доходом</div>
-            <button class="feed-info-btn" data-toast="1" aria-label="Подробнее">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg>
-            </button>
-          </div>
-          <div class="feed-hlist" id="structBondsList"></div>
-        </div>
-
-        <div class="feed-card feed-section">
-          <div class="feed-section-head">
-            <div class="feed-card-title">Структурные облигации</div>
-            <button class="feed-info-btn" data-toast="1" aria-label="Подробнее">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg>
-            </button>
-          </div>
-          <div class="feed-hlist" id="structObligList"></div>
-        </div>
-
-        <div class="feed-card feed-section">
-          <div class="feed-section-head">
-            <div class="feed-card-title">Структурные продукты</div>
-            <button class="feed-link-btn" data-toast="1">Все</button>
-          </div>
-          <div class="feed-hlist" id="structProductsList"></div>
         </div>
 
         <div class="feed-card feed-section">
@@ -222,6 +179,44 @@
           <div id="analystTabContent"></div>
         </div>
 
+        <div class="feed-card feed-section feed-section--flat">
+          <div class="feed-section-head">
+            <div class="feed-card-title">Фонды</div>
+            <button class="feed-info-btn" data-info="funds" aria-label="Подробнее">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg>
+            </button>
+          </div>
+          <div class="feed-hlist" id="fundsList"></div>
+        </div>
+
+        <div class="feed-card feed-section feed-section--flat">
+          <div class="feed-section-head">
+            <div class="feed-card-title">Облигации со структурным доходом</div>
+            <button class="feed-info-btn" data-toast="1" aria-label="Подробнее">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg>
+            </button>
+          </div>
+          <div class="feed-hlist" id="structBondsList"></div>
+        </div>
+
+        <div class="feed-card feed-section feed-section--flat">
+          <div class="feed-section-head">
+            <div class="feed-card-title">Структурные облигации</div>
+            <button class="feed-info-btn" data-toast="1" aria-label="Подробнее">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg>
+            </button>
+          </div>
+          <div class="feed-hlist" id="structObligList"></div>
+        </div>
+
+        <div class="feed-card feed-section feed-section--flat">
+          <div class="feed-section-head">
+            <div class="feed-card-title">Структурные продукты</div>
+            <button class="feed-link-btn" data-toast="1">Все</button>
+          </div>
+          <div class="feed-hlist" id="structProductsList"></div>
+        </div>
+
         <button class="feed-card" data-toast="1">
           <div class="feed-card-title">Портфель на миллион</div>
           <div class="feed-card-sub">Как распределить крупную сумму между акциями, облигациями и фондами</div>
@@ -232,7 +227,7 @@
           <div class="feed-card-sub">Настройте автоследование и не пропускайте рыночные возможности</div>
         </button>
 
-        <div class="feed-card feed-section">
+        <div class="feed-card feed-section feed-section--flat">
           <div class="feed-section-head">
             <div class="feed-card-title">Инвестидеи на короткий срок</div>
             <button class="feed-info-btn" data-info="ideas" aria-label="Подробнее">
@@ -275,7 +270,7 @@
           <div id="newsList"></div>
         </div>
 
-        <div class="feed-card feed-section">
+        <div class="feed-card feed-section feed-section--flat">
           <div class="feed-card-title">Подборки недели</div>
           <div class="feed-hlist" id="digestsList"></div>
         </div>

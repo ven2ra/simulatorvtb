@@ -1537,6 +1537,11 @@ body.sheet-open .app {
   cursor: default;
 }
 
+.feed-section--flat {
+  background: none;
+  padding: 0;
+}
+
 /* Horizontal cards list (placements / ideas) */
 .feed-hlist {
   display: flex;
