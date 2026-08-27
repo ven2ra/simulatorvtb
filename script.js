@@ -45,23 +45,17 @@
     row.addEventListener("click", () => showToast("Демо: действие недоступно"));
   });
 
-  document.querySelectorAll(".account-row").forEach((row) => {
-    row.addEventListener("click", () => showToast("Демо: действие недоступно"));
+  document.querySelectorAll("[data-toast]").forEach((el) => {
+    el.addEventListener("click", () => showToast("Демо: действие недоступно"));
   });
 
-  document.getElementById("configure-btn").addEventListener("click", () => {
-    showToast("Демо: действие недоступно");
-  });
+  const eyeToggle = document.getElementById("eye-toggle");
+  const sumValue = document.getElementById("sum-value");
+  let sumHidden = false;
+  const realSum = sumValue.textContent;
 
-  document.querySelectorAll(".tab:not(#tab-actions)").forEach((tab) => {
-    tab.addEventListener("click", () => showToast("Демо: действие недоступно"));
-  });
-
-  document.querySelectorAll(".nav-item:not([data-nav='portfolio'])").forEach((item) => {
-    item.addEventListener("click", () => showToast("Демо: действие недоступно"));
-  });
-
-  document.querySelectorAll(".story").forEach((story) => {
-    story.addEventListener("click", () => showToast("Демо: действие недоступно"));
+  eyeToggle.addEventListener("click", () => {
+    sumHidden = !sumHidden;
+    sumValue.textContent = sumHidden ? "•••• ₽" : realSum;
   });
 })();

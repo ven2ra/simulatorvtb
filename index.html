@@ -12,93 +12,130 @@
 <body>
   <div class="app">
     <!-- Главный экран -->
+    <div class="topbar">
+      <svg class="logo" viewBox="0 0 76 32" fill="none" stroke="rgb(0,122,255)" stroke-width="2">
+        <ellipse cx="38" cy="16" rx="36" ry="14" />
+      </svg>
+      <div class="topbar-icons">
+        <button aria-label="Профиль" data-toast="1">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"></path></svg>
+        </button>
+        <button aria-label="Уведомления" data-toast="1">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.7 21a2 2 0 0 1-3.4 0"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="info-banner">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="11" x2="12" y2="16"></line><circle cx="12" cy="8" r="0.6" fill="currentColor"></circle></svg>
+      <div>
+        <div class="info-banner-title">Используйте Яндекс Браузер</div>
+        <div class="info-banner-sub">Для корректной работы веб-версии</div>
+      </div>
+    </div>
+
     <header class="header">
-      <div class="portfolio-sum">105 ₽</div>
+      <div class="portfolio-sum-row">
+        <div class="portfolio-sum" id="sum-value">105 ₽</div>
+        <button class="eye-toggle" id="eye-toggle" aria-label="Скрыть сумму">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"></path><circle cx="12" cy="12" r="3"></circle><line x1="3" y1="21" x2="21" y2="3"></line></svg>
+        </button>
+      </div>
       <div class="portfolio-change">
-        <span>+1 ₽ · 1,16%</span>
-        <span class="period">за всё время</span>
+        <span class="change-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="8 7 17 7 17 16"></polyline></svg>
+          1 ₽ · 1,16 %
+        </span>
+        <span class="change-period">за всё время</span>
       </div>
     </header>
 
-    <div class="stories" id="stories">
-      <div class="story">До 16% годовых</div>
-      <div class="story">Сохранность: +50%</div>
-      <div class="story">Портфель для ребёнка</div>
-      <div class="story">Топ-10 акций</div>
-      <div class="story">Валютные облигации</div>
-    </div>
-
-    <nav class="tabs" id="tabs">
-      <button class="tab" id="tab-actions" data-tab="actions">Действия</button>
-      <button class="tab tab--primary" data-tab="history">История</button>
-      <button class="tab" data-tab="analysis">Анализ</button>
-      <button class="tab" data-tab="accounts">Счета</button>
-      <button class="tab" data-tab="favorites">Избранное</button>
+    <nav class="action-pills" id="tabs">
+      <button class="pill-btn" id="tab-actions">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="7" x2="20" y2="7"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="17" x2="20" y2="17"></line></svg>
+        Действия
+      </button>
+      <button class="pill-btn" data-toast="1">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 16 14"></polyline></svg>
+        История
+      </button>
+      <button class="pill-btn" data-toast="1">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9h-9V3z"></path></svg>
+        Анализ
+      </button>
     </nav>
 
-    <section class="accounts" id="accounts">
-      <button class="account-row" data-account="broker">
+    <div class="subtabs">
+      <button class="subtab active" data-toast="1">Счета</button>
+      <button class="subtab" data-toast="1">Избранное</button>
+    </div>
+
+    <section class="accounts">
+      <button class="account-row" data-toast="1">
         <div class="account-info">
-          <div class="account-name">Брокерский счёт</div>
-          <div class="account-number">№ 40817810...0117</div>
+          <div class="account-sum">65 ₽</div>
+          <div class="account-sub">Брокерский счёт · 11MD3A · Основной</div>
         </div>
-        <div class="account-values">
-          <div class="account-sum">61 ₽</div>
-          <div class="account-change positive">+0,57 ₽ · 0,89%</div>
-        </div>
+        <div class="account-change positive">+0,57 ₽ · 0,89 %</div>
       </button>
 
-      <button class="account-row" data-account="iis">
+      <button class="account-row" data-toast="1">
         <div class="account-info">
-          <div class="account-name">ИИС</div>
-          <div class="account-number">№ 40817810...0245</div>
-        </div>
-        <div class="account-values">
           <div class="account-sum">38 ₽</div>
-          <div class="account-change positive">+0,62 ₽ · 1,65%</div>
+          <div class="account-sub">ИИС · 144IMP · Основной</div>
         </div>
+        <div class="account-change positive">+0,62 ₽ · 1,65 %</div>
       </button>
 
-      <button class="account-row" data-account="savings">
+      <button class="account-row" data-toast="1">
         <div class="account-info">
-          <div class="account-name">Инвесткопилка</div>
-          <div class="account-number">№ 40817810...0398</div>
+          <div class="account-sum">1 ₽</div>
+          <div class="account-sub">Инвесткопилка · 11MD3A/1CY8P · Основной</div>
         </div>
-        <div class="account-values">
-          <div class="account-sum">4 ₽</div>
-          <div class="account-change positive">+0,01 ₽ · 0,25%</div>
-        </div>
+        <div class="account-change neutral">0 ₽ · 0 %</div>
       </button>
 
-      <button class="account-row" data-account="funds">
+      <button class="account-row" data-toast="1">
         <div class="account-info">
-          <div class="account-name">Фонды ВИМ</div>
-          <div class="account-number">№ 40817810...0512</div>
+          <div class="account-sum">0 ₽</div>
+          <div class="account-sub">Фонды ВИМ · Портфель УК</div>
         </div>
-        <div class="account-values">
-          <div class="account-sum">2 ₽</div>
-          <div class="account-change negative">-0,20 ₽ · 0,32%</div>
-        </div>
+        <div class="account-change neutral">0 ₽ · 0 %</div>
       </button>
     </section>
 
-    <button class="configure-btn" id="configure-btn">Настроить вид экрана</button>
+    <button class="configure-btn" data-toast="1">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      Настроить вид экрана
+    </button>
+
+    <div class="promo-card">
+      10 призов по 100 000 ₽
+      <button class="promo-close" data-toast="1" aria-label="Закрыть">
+        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="2" x2="14" y2="14"></line><line x1="14" y1="2" x2="2" y2="14"></line></svg>
+      </button>
+    </div>
+
+    <div class="search-bar" data-toast="1">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      🏆 ВТБ — лучший брокер года
+    </div>
 
     <nav class="bottom-nav">
       <button class="nav-item" data-nav="search">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="18" x2="14" y2="18"></line></svg>
         Поиск
       </button>
       <button class="nav-item" data-nav="quotes">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 6"></polyline><polyline points="15 6 21 6 21 12"></polyline></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 14 7 14 9 9 13 18 15 11 17 14 22 14"></polyline></svg>
         Котировки
       </button>
       <button class="nav-item active" data-nav="portfolio">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" transform="rotate(45 12 12)"></rect></svg>
         Портфель
       </button>
       <button class="nav-item" data-nav="chat">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-4.2-7.6"></path><path d="M21 3v6h-6"></path></svg>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-4.2-7.6"></path><path d="M21 3v6h-6"></path></svg>
         Чат
       </button>
     </nav>
@@ -108,70 +145,68 @@
   <div class="backdrop" id="backdrop"></div>
 
   <!-- Шторка «Действия» -->
-  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Действия">
     <div class="sheet-grabber"></div>
-    <div class="sheet-header">
-      <div class="sheet-title" id="sheet-title">Действия</div>
-      <button class="sheet-close" id="sheet-close" aria-label="Закрыть">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="3" y1="3" x2="13" y2="13"></line><line x1="13" y1="3" x2="3" y2="13"></line></svg>
-      </button>
-    </div>
+    <button class="sheet-close" id="sheet-close" aria-label="Закрыть">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="2" y1="2" x2="14" y2="14"></line><line x1="14" y1="2" x2="2" y2="14"></line></svg>
+    </button>
     <div class="sheet-body">
       <div class="sheet-block">
         <div class="sheet-block-title">Пополнения и выводы</div>
-        <div class="sheet-block-list">
-          <button class="sheet-row" data-action="Пополнить">
-            <span class="sheet-row-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            </span>
-            <span class="sheet-row-label">Пополнить</span>
-            <span class="sheet-row-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
-            </span>
-          </button>
-          <button class="sheet-row" data-action="Между счетами">
-            <span class="sheet-row-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"></path><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><path d="M7 21l-4-4 4-4"></path><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
-            </span>
-            <span class="sheet-row-label">Между счетами</span>
-            <span class="sheet-row-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
-            </span>
-          </button>
-          <button class="sheet-row" data-action="Вывести">
-            <span class="sheet-row-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
-            </span>
-            <span class="sheet-row-label">Вывести</span>
-            <span class="sheet-row-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
-            </span>
-          </button>
-        </div>
+
+        <button class="sheet-row" data-action="Пополнить">
+          <span class="sheet-row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </span>
+          <span class="sheet-row-label">Пополнить</span>
+          <span class="sheet-row-chevron">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
+          </span>
+        </button>
+
+        <button class="sheet-row" data-action="Между счетами">
+          <span class="sheet-row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3l4 4-4 4"></path><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><path d="M7 21l-4-4 4-4"></path><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+          </span>
+          <span class="sheet-row-label">Между счетами</span>
+          <span class="sheet-row-chevron">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
+          </span>
+        </button>
+
+        <button class="sheet-row" data-action="Вывести">
+          <span class="sheet-row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+          </span>
+          <span class="sheet-row-label">Вывести</span>
+          <span class="sheet-row-chevron">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
+          </span>
+        </button>
       </div>
 
       <div class="sheet-block">
         <div class="sheet-block-title">Услуги и действия со счётом</div>
-        <div class="sheet-block-list">
-          <button class="sheet-row" data-action="Маржинальная торговля">
-            <span class="sheet-row-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"></path><path d="M12 8v4l3 3"></path><path d="M17 2l4 4"></path><path d="M21 2l-4 4"></path></svg>
-            </span>
-            <span class="sheet-row-label">Маржинальная торговля</span>
-            <span class="sheet-row-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
-            </span>
-          </button>
-          <button class="sheet-row" data-action="Отчеты и справки">
-            <span class="sheet-row-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="13" y2="17"></line></svg>
-            </span>
-            <span class="sheet-row-label">Отчеты и справки</span>
-            <span class="sheet-row-chevron">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
-            </span>
-          </button>
-        </div>
+
+        <button class="sheet-row" data-action="Маржинальная торговля">
+          <span class="sheet-row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 15.5V8.5h2.6a2 2 0 0 1 0 4H9.5" stroke-linecap="round" stroke-linejoin="round"></path><line x1="9" y1="12.5" x2="12.5" y2="12.5" stroke-linecap="round"></line></svg>
+          </span>
+          <span class="sheet-row-label">Маржинальная торговля</span>
+          <span class="sheet-row-chevron">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
+          </span>
+        </button>
+
+        <button class="sheet-row" data-action="Отчеты и справки">
+          <span class="sheet-row-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="13" y2="17"></line></svg>
+          </span>
+          <span class="sheet-row-label">Отчеты и справки</span>
+          <span class="sheet-row-chevron">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"></polyline></svg>
+          </span>
+        </button>
       </div>
     </div>
   </div>
