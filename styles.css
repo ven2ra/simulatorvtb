@@ -2130,9 +2130,30 @@ body.sheet-open .app {
   margin-top: 14px;
 }
 
+.feed-analyst-columns--scroll {
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-left: -16px;
+  margin-right: -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.feed-analyst-columns--scroll::-webkit-scrollbar {
+  display: none;
+}
+
 .feed-analyst-col {
   flex: 1;
   min-width: 0;
+}
+
+.feed-analyst-col--fixed {
+  flex: 0 0 auto;
+  width: 180px;
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 12px;
 }
 
 .feed-stock-info {

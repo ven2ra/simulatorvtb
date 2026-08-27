@@ -401,10 +401,10 @@
 
     const groups = tab === "rub" ? DEMO_BONDS_RUB : DEMO_BONDS_CNY;
     const wrap = document.createElement("div");
-    wrap.className = "feed-analyst-columns";
+    wrap.className = "feed-analyst-columns feed-analyst-columns--scroll";
     groups.forEach((group) => {
       const col = document.createElement("div");
-      col.className = "feed-analyst-col";
+      col.className = "feed-analyst-col feed-analyst-col--fixed";
       const title = document.createElement("div");
       title.className = "feed-analyst-col-title";
       title.textContent = group.title;
