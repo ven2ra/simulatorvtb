@@ -2153,6 +2153,16 @@ body.sheet-open .app {
   padding: 12px 14px;
 }
 
+@media (max-width: 379px) {
+  .feed-analyst-columns:not(.feed-analyst-columns--scroll) {
+    flex-direction: column;
+  }
+
+  .feed-analyst-columns--scroll .feed-analyst-col--fixed {
+    width: 176px;
+  }
+}
+
 .feed-analyst-col--fixed {
   flex: 0 0 auto;
   width: 194px;
