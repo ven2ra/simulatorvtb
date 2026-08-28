@@ -2153,13 +2153,19 @@ body.sheet-open .app {
   padding: 12px 14px;
 }
 
-@media (max-width: 379px) {
-  .feed-analyst-columns:not(.feed-analyst-columns--scroll) {
-    flex-direction: column;
-  }
+.feed-analyst-columns:not(.feed-analyst-columns--scroll) {
+  flex-direction: column;
+}
 
+@media (max-width: 379px) {
   .feed-analyst-columns--scroll .feed-analyst-col--fixed {
     width: 176px;
+  }
+}
+
+@media (min-width: 600px) {
+  .feed-analyst-columns:not(.feed-analyst-columns--scroll) {
+    flex-direction: row;
   }
 }
 
